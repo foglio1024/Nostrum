@@ -190,7 +190,7 @@ namespace FoglioUtils
             }
             catch
             {
-                Log.F($"Failed to check hash on file {fileName}");
+                //Log.F($"Failed to check hash on file {fileName}");
                 return "";
             }
             return SHA256.Create().ComputeHash(fileBuffer).ToStringEx();
