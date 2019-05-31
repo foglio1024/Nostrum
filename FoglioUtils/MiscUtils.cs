@@ -2,7 +2,8 @@
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
-
+using System.Threading;
+using System.Threading.Tasks;
 using Color = System.Windows.Media.Color;
 
 
@@ -41,6 +42,19 @@ namespace FoglioUtils
             {
                 return true;
             }
+        }
+
+        public static async Task WaitForFileUnlock(string filename, FileAccess access, int interval = 500, int timeout = 2000)
+        {
+            var elapsedTime = 0;
+            while (elapsedTime < timeout)
+            {
+                if (IsFileLocked(filename, access)) elapsedTime += interval;
+                else break;
+                Thread.Sleep(interval);
+                Console.WriteLine("Waiting to open file");
+            }
+            if(IsFileLocked(filename, access)) throw new IOException($"{filename} is used by another process.");
         }
 
         [DllImport("kernel32.dll")]
