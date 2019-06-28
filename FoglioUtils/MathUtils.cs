@@ -11,9 +11,12 @@ namespace FoglioUtils
         public static double FactorCalc(double val, double max)
         {
             return max > 0
-                ? val / max > 1 ? 1 : val / max
+                ? val / max > 1 
+                    ? 1 
+                    : val / max
                 : 1;
         }
+
         public static Point GetRelativePoint(double x, double y, double cx, double cy)
         {
             return new Point(x - cx, y - cy);
