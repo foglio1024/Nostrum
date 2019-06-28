@@ -70,6 +70,7 @@
     <Compile Include="Extensions\ButtonExtensions.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\ByteExtensions.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
