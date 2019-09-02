@@ -59,5 +59,9 @@ namespace FoglioUtils
 
         [DllImport("kernel32.dll")]
         public static extern int GetCurrentThreadId();
+
+        [DllImport("kernel32.dll")]
+        public static extern bool AllocConsole();
+
     }
 }
