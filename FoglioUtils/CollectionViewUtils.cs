@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Data;
 
 namespace FoglioUtils
 {
     public static class CollectionViewUtils
     {
+        public static void Holder(object sender, EventArgs ev) { }
+
         public static ICollectionView InitView(Predicate<object> filter, IEnumerable source, IEnumerable<SortDescription> sortDescr)
         {
             var view = new CollectionViewSource { Source = source }.View;
@@ -16,6 +19,8 @@ namespace FoglioUtils
             {
                 view.SortDescriptions.Add(sd);
             }
+
+            view.CollectionChanged += Holder;
             return view;
         }
 
@@ -43,6 +48,7 @@ namespace FoglioUtils
             }
 
             liveView.IsLiveSorting = true;
+            ((ICollectionView)liveView).CollectionChanged += Holder;
 
             return liveView;
         }
