@@ -35,6 +35,7 @@ namespace FoglioUtils.Extensions
             str = str.Replace("&gt;", ">");
             str = str.Replace("&#xA", "\n");
             str = str.Replace("&quot;", "\"");
+            str = str.Replace("&amp;", "&");
             return str;
         }
         public static string EscapeHtml(this string str)
@@ -43,6 +44,7 @@ namespace FoglioUtils.Extensions
             str = str.Replace(">", "&gt;");
             str = str.Replace("\n", "&#xA");
             str = str.Replace("\"", "&quot;");
+            str = str.Replace("&", "&amp;");
             return str;
         }
         public static string ReplaceFirstOccurrenceCaseInsensitive(this string input, string search, string replacement)
