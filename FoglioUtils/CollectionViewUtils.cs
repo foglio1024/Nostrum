@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Data;
 
 namespace FoglioUtils
@@ -24,10 +23,13 @@ namespace FoglioUtils
             return view;
         }
 
-        public static ICollectionViewLiveShaping InitLiveView<T>(Predicate<object> predicate, IEnumerable<T> source, string[] filters, SortDescription[] sortFilters)
+        public static ICollectionViewLiveShaping InitLiveView<T>(IEnumerable<T> source, Predicate<T> predicate,string[] filters, SortDescription[] sortFilters)
         {
             var cv = new CollectionViewSource { Source = source }.View;
-            cv.Filter = predicate;
+
+            if (predicate == null) cv.Filter = null;
+            else cv.Filter = o => predicate.Invoke((T) o);
+
             if (!(cv is ICollectionViewLiveShaping liveView)) return null;
             if (!liveView.CanChangeLiveFiltering) return null;
             if (filters.Length > 0)
