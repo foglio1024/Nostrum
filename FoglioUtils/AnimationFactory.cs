@@ -9,7 +9,7 @@ namespace FoglioUtils
 {
     public static class AnimationFactory
     {
-        public static DoubleAnimation CreateDoubleAnimation(int ms, double to, double from = double.NaN, bool easing = false, EventHandler completed = null)
+        public static DoubleAnimation CreateDoubleAnimation(int ms, double to, double from = double.NaN, bool easing = false, EventHandler completed = null, int framerate = 60)
         {
             var ret = new DoubleAnimation
             {
@@ -19,6 +19,7 @@ namespace FoglioUtils
             if (!double.IsNaN(from)) ret.From = from;
             if (easing) ret.EasingFunction = new QuadraticEase();
             if (completed != null) ret.Completed += completed;
+            Timeline.SetDesiredFrameRate(ret, framerate);
             return ret;
         }
     }
