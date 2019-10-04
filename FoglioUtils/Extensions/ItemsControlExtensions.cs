@@ -9,8 +9,7 @@ namespace FoglioUtils.Extensions
     {
         public static void RefreshTemplate(this ItemsControl el, string resName)
         {
-            if (el == null) return;
-            el.Dispatcher.BeginInvoke(new Action(() =>
+            el?.Dispatcher?.BeginInvoke(new Action(() =>
             {
                 el.ItemTemplateSelector = null;
                 el.ItemTemplateSelector = Application.Current.FindResource(resName) as DataTemplateSelector;
@@ -18,8 +17,7 @@ namespace FoglioUtils.Extensions
         }
         public static void RefreshTemplate(this ItemsControl el, DataTemplateSelector selector)
         {
-            if (el == null) return;
-            el.Dispatcher.BeginInvoke(new Action(() =>
+            el?.Dispatcher?.BeginInvoke(new Action(() =>
             {
                 el.ItemTemplateSelector = null;
                 el.ItemTemplateSelector = selector;
