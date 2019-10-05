@@ -40,6 +40,7 @@ namespace FoglioUtils
                 }
                 liveView.IsLiveFiltering = true;
             }
+            ((ICollectionView)liveView).CollectionChanged += Holder;
 
             if (sortFilters.Length <= 0) return liveView;
 
@@ -50,7 +51,6 @@ namespace FoglioUtils
             }
 
             liveView.IsLiveSorting = true;
-            ((ICollectionView)liveView).CollectionChanged += Holder;
 
             return liveView;
         }
