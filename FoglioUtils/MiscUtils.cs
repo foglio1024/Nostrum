@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Color = System.Windows.Media.Color;
 
 
@@ -44,7 +46,14 @@ namespace FoglioUtils
             }
         }
 
+        public static Icon GetEmbeddedIcon(string path)
+        {
+            var stream = Application.GetResourceStream(new Uri(path, UriKind.Relative))?.Stream;
+            return stream == null ? null : new Icon(stream);
+        }
+#pragma warning disable 1998
         public static async Task WaitForFileUnlock(string filename, FileAccess access, int interval = 500, int timeout = 2000)
+#pragma warning restore 1998
         {
             var elapsedTime = 0;
             while (elapsedTime < timeout)
@@ -54,7 +63,7 @@ namespace FoglioUtils
                 Thread.Sleep(interval);
                 Console.WriteLine("Waiting to open file");
             }
-            if(IsFileLocked(filename, access)) throw new IOException($"{filename} is used by another process.");
+            if (IsFileLocked(filename, access)) throw new IOException($"{filename} is used by another process.");
         }
 
         [DllImport("kernel32.dll")]
