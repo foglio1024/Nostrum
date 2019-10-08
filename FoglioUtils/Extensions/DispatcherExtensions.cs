@@ -13,10 +13,10 @@ namespace FoglioUtils.Extensions
             else
                 dotIt();
         }
-        public static void BeginInvokeIfRequired(this Dispatcher disp, Action dotIt, DispatcherPriority priority)
+        public static void InvokeAsyncIfRequired(this Dispatcher disp, Action dotIt, DispatcherPriority priority)
         {
             if (disp.Thread != Thread.CurrentThread)
-                disp.BeginInvoke(dotIt, priority);
+                disp.InvokeAsync(dotIt, priority);
             else
                 dotIt();
         }

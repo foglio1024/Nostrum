@@ -9,19 +9,19 @@ namespace FoglioUtils.Extensions
     {
         public static void RefreshTemplate(this ItemsControl el, string resName)
         {
-            el?.Dispatcher?.BeginInvoke(new Action(() =>
+            el?.Dispatcher?.InvokeAsync(() =>
             {
                 el.ItemTemplateSelector = null;
                 el.ItemTemplateSelector = Application.Current.FindResource(resName) as DataTemplateSelector;
-            }), DispatcherPriority.Background);
+            }, DispatcherPriority.Background);
         }
         public static void RefreshTemplate(this ItemsControl el, DataTemplateSelector selector)
         {
-            el?.Dispatcher?.BeginInvoke(new Action(() =>
+            el?.Dispatcher?.InvokeAsync(() =>
             {
                 el.ItemTemplateSelector = null;
                 el.ItemTemplateSelector = selector;
-            }), DispatcherPriority.Background);
+            }, DispatcherPriority.Background);
         }
     }
 }
