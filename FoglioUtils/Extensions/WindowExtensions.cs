@@ -8,5 +8,10 @@ namespace FoglioUtils.Extensions
         {
             try { w.DragMove(); } catch { }
         }
+
+        public static void TryClose(this Window w)
+        {
+            try { w.Close(); } catch { }
+        }
     }
 }
