@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationFactory.cs" />
+    <Compile Include="Converters\BooleanInverter.cs" />
     <Compile Include="DependencyPropertyWatcher.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="CollectionViewUtils.cs" />
@@ -95,5 +96,6 @@
     <Compile Include="MiscUtils.cs" />
     <Compile Include="TSPropertyChanged.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
