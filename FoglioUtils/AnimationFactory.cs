@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Media.Animation;
 
 namespace FoglioUtils
@@ -17,6 +18,29 @@ namespace FoglioUtils
             if (completed != null) ret.Completed += completed;
             Timeline.SetDesiredFrameRate(ret, framerate);
             return ret;
+        }
+        public static ThicknessAnimation CreateThicknessAnimation(int ms, Thickness to, bool easing = false, EventHandler completed = null, int framerate = 60)
+        {
+            var ret = new ThicknessAnimation
+            {
+                Duration = TimeSpan.FromMilliseconds(ms),
+                To = to
+            };
+            if (easing) ret.EasingFunction = new QuadraticEase();
+            if (completed != null) ret.Completed += completed;
+            Timeline.SetDesiredFrameRate(ret, framerate);
+            return ret;
+        }
+        public static ThicknessAnimation CreateThicknessAnimation(int ms, Thickness to, Thickness from, bool easing = false, EventHandler completed = null, int framerate = 60)
+        {
+            var ret = CreateThicknessAnimation(ms, to, easing, completed, framerate);
+            ret.From = from;
+            return ret;
+        }
+
+        public static ColorAnimation CreateColorAnimation(int ms)
+        {
+            return new ColorAnimation {Duration = TimeSpan.FromMilliseconds(ms)};
         }
     }
 }
