@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FoglioUtils</RootNamespace>
     <AssemblyName>FoglioUtils</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -91,6 +91,7 @@
     <Compile Include="Extensions\ICollectionViewExtensions.cs" />
     <Compile Include="MathUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TSCollection.cs" />
     <Compile Include="TSObservableCollection.cs" />
     <Compile Include="TimeUtils.cs" />
     <Compile Include="MiscUtils.cs" />
