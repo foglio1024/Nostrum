@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace FoglioUtils.Extensions
@@ -19,6 +21,20 @@ namespace FoglioUtils.Extensions
                 disp.InvokeAsync(dotIt, priority);
             else
                 dotIt();
+        }
+
+        public static async Task<bool> IsAlive(this Dispatcher d, int timeoutMs)
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+            var result = TimeSpan.MaxValue;
+            _ = d.InvokeAsync(() =>
+              {
+                  sw.Stop();
+                  result = sw.Elapsed;
+              });
+            return await Task.Delay(timeoutMs).ContinueWith(t => result != TimeSpan.MaxValue);
+
         }
     }
 }

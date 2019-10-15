@@ -131,6 +131,14 @@ namespace FoglioUtils
                 _lock.ExitReadLock();
             }
         }
+
+        public void AddAsync(T item)
+        {
+            _dispatcher.InvokeAsyncIfRequired(() =>
+            {
+                Add(item);
+            }, DispatcherPriority.DataBind);
+        }
     }
 #if BATCH
     public class TSObservableCollectionBatch<T> : Collection<T>, INotifyCollectionChanged, INotifyPropertyChanged
