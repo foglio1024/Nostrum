@@ -2,9 +2,24 @@
 
 namespace FoglioUtils.Extensions
 {
-    public static class SizeExtensions
+    public static class SizeExtensions //funny
     {
-        public static bool IsEqual(this Size s, Size other)
+        public static bool IsEqual(this System.Windows.Size s, System.Windows.Size other)
+        {
+            return s.Width == other.Width &&
+                   s.Height == other.Height;
+        }
+        public static bool IsEqual(this System.Windows.Size s, System.Drawing.Size other)
+        {
+            return s.Width == other.Width &&
+                   s.Height == other.Height;
+        }
+        public static bool IsEqual(this System.Drawing.Size s, System.Drawing.Size other)
+        {
+            return s.Width == other.Width &&
+                   s.Height == other.Height;
+        }
+        public static bool IsEqual(this System.Drawing.Size s, System.Windows.Size other)
         {
             return s.Width == other.Width &&
                    s.Height == other.Height;
