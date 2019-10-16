@@ -1,7 +1,8 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace FoglioUtils.Extensions
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class SizeExtensions //funny
     {
         public static bool IsEqual(this System.Windows.Size s, System.Windows.Size other)
