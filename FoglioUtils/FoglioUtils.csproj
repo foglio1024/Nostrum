@@ -96,6 +96,8 @@
     <Compile Include="TimeUtils.cs" />
     <Compile Include="MiscUtils.cs" />
     <Compile Include="TSPropertyChanged.cs" />
+    <Compile Include="WinAPI\Gdi32.cs" />
+    <Compile Include="WinAPI\User32.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
