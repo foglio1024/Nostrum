@@ -49,7 +49,11 @@ namespace FoglioUtils.WinAPI
         [DllImport("user32.dll")]
         public static extern uint GetGuiResources(IntPtr hProcess, uint uiFlags);
 
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetCursorPos(out POINT pPoint);
 
+        #region Types
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
@@ -58,5 +62,19 @@ namespace FoglioUtils.WinAPI
             public readonly int Right;
             public readonly int Bottom;
         }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int X;
+            public int Y;
+
+            public POINT(int x, int y)
+            {
+                this.X = x;
+                this.Y = y;
+            }
+        } 
+        #endregion
     }
 }
