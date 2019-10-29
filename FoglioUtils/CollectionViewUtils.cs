@@ -10,29 +10,34 @@ namespace FoglioUtils
     {
         public static void Holder(object sender, EventArgs ev) { }
 
-        public static ICollectionView InitView(Predicate<object> filter, IEnumerable source, IEnumerable<SortDescription> sortDescr)
+        public static ICollectionView InitView<T>(IEnumerable<T> source, Predicate<T> predicate = null, IEnumerable<SortDescription> sortDescr = null)
         {
             var view = new CollectionViewSource { Source = source }.View;
-            view.Filter = filter;
-            foreach (var sd in sortDescr)
+            if (predicate == null) view.Filter = null;
+            else view.Filter = o => predicate.Invoke((T)o);
+
+            if (sortDescr != null)
             {
-                view.SortDescriptions.Add(sd);
+                foreach (var sd in sortDescr)
+                {
+                    view.SortDescriptions.Add(sd);
+                }
             }
 
             view.CollectionChanged += Holder;
             return view;
         }
 
-        public static ICollectionViewLiveShaping InitLiveView<T>(IEnumerable<T> source, Predicate<T> predicate,string[] filters, SortDescription[] sortFilters)
+        public static ICollectionViewLiveShaping InitLiveView<T>(IEnumerable<T> source, Predicate<T> predicate = null, string[] filters = null, SortDescription[] sortFilters = null)
         {
             var cv = new CollectionViewSource { Source = source }.View;
 
             if (predicate == null) cv.Filter = null;
-            else cv.Filter = o => predicate.Invoke((T) o);
+            else cv.Filter = o => predicate.Invoke((T)o);
 
             if (!(cv is ICollectionViewLiveShaping liveView)) return null;
             if (!liveView.CanChangeLiveFiltering) return null;
-            if (filters.Length > 0)
+            if (filters?.Length > 0)
             {
                 foreach (var filter in filters)
                 {
@@ -42,7 +47,7 @@ namespace FoglioUtils
             }
             ((ICollectionView)liveView).CollectionChanged += Holder;
 
-            if (sortFilters.Length <= 0) return liveView;
+            if (sortFilters == null || sortFilters.Length <= 0) return liveView;
 
             foreach (var filter in sortFilters)
             {
