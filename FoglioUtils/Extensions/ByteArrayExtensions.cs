@@ -11,5 +11,10 @@ namespace FoglioUtils.Extensions
                 hex.AppendFormat("{0:x2}", b);
             return hex.ToString();
         }
+
+        public static string ToUTF8String(this byte[] ba)
+        {
+            return Encoding.UTF8.GetString(ba);
+        }
     }
 }
