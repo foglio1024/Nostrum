@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Nostrum.Converters">
+    <converters:BoolToVisibility x:Key="BoolToVisibility"/>
+    <converters:BooleanInverter x:Key="BoolInverter"/>
+    <converters:RoundedClipConverter x:Key="RoundedClipConverter" />
+    <converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
+    <converters:EpochConverter x:Key="EpochConverter" />
+    <converters:ValueToFactorConverter x:Key="ValueToFactor"/>
+    <converters:FactorToAngleConverter x:Key="FactorToAngle"/>
+    <converters:ColorToTransparentConverter x:Key="ColorToTransparent"/>
+    <converters:MathMultiplicationConverter x:Key="MathMultiplication"/>
+    <converters:NullToVisibleCollapsedConverter x:Key="NullToVisibleCollapsed"/>
+    <converters:DurationLabelConverter x:Key="DurationToTimeFormat"/>
+
+</ResourceDictionary>

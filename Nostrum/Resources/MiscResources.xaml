@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Nostrum.Converters">
+    <QuadraticEase x:Key="QuadraticEase"/>
+
+    <TranslateTransform x:Key="DefaultTranslateTransform"/>
+    <RotateTransform x:Key="DefaultRotateTransform"/>
+    <ScaleTransform x:Key="DefaultScaleTransform"/>
+
+    <RotateTransform x:Key="Rotate45" Angle="45"/>
+    <RotateTransform x:Key="Rotate45Inv" Angle="-45"/>
+
+    <SkewTransform x:Key="Skew45" AngleX="-45"/>
+    <SkewTransform x:Key="Skew45Inv" AngleX="45"/>
+
+</ResourceDictionary>
