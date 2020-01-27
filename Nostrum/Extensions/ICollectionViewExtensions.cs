@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Nostrum.Factories;
 
 namespace Nostrum.Extensions
 {
@@ -6,7 +7,7 @@ namespace Nostrum.Extensions
     {
         public static void Free(this ICollectionView view)
         {
-            view.CollectionChanged -= CollectionViewUtils.Holder;
+            view.CollectionChanged -= CollectionViewFactory.Holder;
         }
     }
 }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
 
-namespace Nostrum
+namespace Nostrum.Factories
 {
-    public static class CollectionViewUtils
+    public static class CollectionViewFactory
     {
         public static void Holder(object sender, EventArgs ev) { }
 
-        public static ICollectionView InitView<T>(IEnumerable<T> source, Predicate<T> predicate = null, IEnumerable<SortDescription> sortDescr = null)
+        public static ICollectionView CreateCollectionView<T>(IEnumerable<T> source, Predicate<T> predicate = null, IEnumerable<SortDescription> sortDescr = null)
         {
             var view = new CollectionViewSource { Source = source }.View;
             if (predicate == null) view.Filter = null;
@@ -26,8 +26,7 @@ namespace Nostrum
             view.CollectionChanged += Holder;
             return view;
         }
-
-        public static ICollectionViewLiveShaping InitLiveView<T>(IEnumerable<T> source, Predicate<T> predicate = null, string[] filters = null, SortDescription[] sortFilters = null)
+        public static ICollectionViewLiveShaping CreateLiveCollectionView<T>(IEnumerable<T> source, Predicate<T> predicate = null, string[] filters = null, SortDescription[] sortFilters = null)
         {
             var cv = new CollectionViewSource { Source = source }.View;
 
