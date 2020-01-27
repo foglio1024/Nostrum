@@ -90,7 +90,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimationFactory.cs" />
+    <Compile Include="Converters\ListBoxItemIndexConverter.cs" />
+    <Compile Include="Factories\AnimationFactory.cs" />
     <Compile Include="Controls\Arc.cs" />
     <Compile Include="Controls\MaterialSwitch.xaml.cs">
       <DependentUpon>MaterialSwitch.xaml</DependentUpon>
@@ -112,7 +113,7 @@
     <Compile Include="Converters\ValueToFactorConverter.cs" />
     <Compile Include="DependencyPropertyWatcher.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
-    <Compile Include="CollectionViewUtils.cs" />
+    <Compile Include="Factories\CollectionViewFactory.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="Extensions\ButtonExtensions.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
@@ -171,6 +172,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\SVG.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,5 +27,35 @@ namespace Nostrum.Converters
             throw new NotImplementedException();
         }
     }
+    public class MillisecondsToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var val = 0L;
+            var ret = "";
+
+            if (value != null) val = System.Convert.ToInt64(value);
+            var seconds = val / 1000;
+            var minutes = seconds / 60;
+            var hours = minutes / 60;
+            var days = hours / 24;
+
+            if (minutes < 60) return $"{minutes}m";
+            if (hours < 24) return $"{hours}h {minutes - (hours*60)}m";
+            return $"{days}d {hours - (days * 24)}h {minutes - (hours * 60)}m";
+            //if (seconds < 60) return $"{seconds}s";
+            //if (minutes < 60) return $"{minutes}m {seconds - (minutes * 60)}s";
+            //if (hours < 24) return $"{hours}h {minutes - (hours * 60)}m {seconds - (minutes * 60)}s";
+            //return $"{days}d {hours - (days * 24)}h {minutes - (hours * 60)}m {seconds - (minutes * 60)}s";
+
+
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 }

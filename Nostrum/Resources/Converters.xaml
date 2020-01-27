@@ -8,9 +8,11 @@
     <converters:EpochConverter x:Key="EpochConverter" />
     <converters:ValueToFactorConverter x:Key="ValueToFactor"/>
     <converters:FactorToAngleConverter x:Key="FactorToAngle"/>
-    <converters:ColorToTransparentConverter x:Key="ColorToTransparent"/>
+    <converters:ColorToTransparent x:Key="ColorToTransparent"/>
     <converters:MathMultiplicationConverter x:Key="MathMultiplication"/>
     <converters:NullToVisibleCollapsedConverter x:Key="NullToVisibleCollapsed"/>
     <converters:DurationLabelConverter x:Key="DurationToTimeFormat"/>
+    <converters:ListBoxItemIndexConverter x:Key="ListBoxItemIndex"/>
+    <converters:MillisecondsToStringConverter x:Key="MillisecondsToString"/>
 
 </ResourceDictionary>
