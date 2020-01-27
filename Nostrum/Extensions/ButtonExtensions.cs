@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace Nostrum.Extensions
 {
@@ -52,6 +53,14 @@ namespace Nostrum.Extensions
                                                                                                             new PropertyMetadata(true));
         public static bool GetRippleEnabled(DependencyObject obj) => (bool)obj.GetValue(RippleEnabledProperty);
         public static void SetRippleEnabled(DependencyObject obj, bool value) => obj.SetValue(RippleEnabledProperty, value);
+
+        // BorderEffect
+        public static readonly DependencyProperty BorderEffectProperty = DependencyProperty.RegisterAttached("BorderEffect",
+                                                                                                            typeof(Effect),
+                                                                                                            typeof(ButtonExtensions),
+                                                                                                            new PropertyMetadata(null));
+        public static Effect GetBorderEffect(DependencyObject obj) => (Effect)obj.GetValue(BorderEffectProperty);
+        public static void SetBorderEffect(DependencyObject obj, Effect value) => obj.SetValue(BorderEffectProperty, value);
 
         
 
