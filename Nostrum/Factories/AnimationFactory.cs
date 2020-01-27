@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace Nostrum
+namespace Nostrum.Factories
 {
     public static class AnimationFactory
     {
@@ -35,7 +35,7 @@ namespace Nostrum
         }
         public static ThicknessAnimation CreateThicknessAnimation(int ms, Thickness to, Thickness from, bool easing = false, EventHandler completed = null, int framerate = 60)
         {
-            var ret = CreateThicknessAnimation(ms, to, easing, completed, framerate);
+            var ret = CreateThicknessAnimation(ms, to, easing: easing, completed, framerate);
             ret.From = from;
             return ret;
         }
@@ -48,13 +48,13 @@ namespace Nostrum
         }
         public static ColorAnimation CreateColorAnimation(int ms, Color to, bool easing = false)
         {
-            var ret = CreateColorAnimation(ms, easing);
+            var ret = CreateColorAnimation(ms, easing: easing);
             ret.To = to;
             return ret;
         }
         public static ColorAnimation CreateColorAnimation(int ms, Color to, Color from, bool easing = false)
         {
-            var ret = CreateColorAnimation(ms, to, easing);
+            var ret = CreateColorAnimation(ms, to, easing: easing);
             ret.From = from;
             return ret;
         }
