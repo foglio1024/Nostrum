@@ -3,9 +3,6 @@
                     xmlns:extensions="clr-namespace:Nostrum.Extensions"
                     xmlns:controls="clr-namespace:Nostrum.Controls"
                     xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
-    <!--<ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Converters.xaml" />
-    </ResourceDictionary.MergedDictionaries>-->
 
     <SolidColorBrush x:Key="SelectionBackgroundBrush" Color="White" Opacity=".04" />
     <SolidColorBrush x:Key="SelectionBackgroundLightBrush" Color="White" Opacity=".08" />
@@ -33,12 +30,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Border x:Name="border" ClipToBounds="True"
+                        <Border x:Name="border" ClipToBounds="False"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Padding="{TemplateBinding Padding}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="{TemplateBinding extensions:ButtonExtensions.CornerRadius}"
-                                Background="{TemplateBinding Background}">
+                                Background="{TemplateBinding Background}"
+                                Effect="{TemplateBinding extensions:ButtonExtensions.BorderEffect}">
 
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
@@ -62,11 +60,23 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="hl" Property="Background" Value="#2fff" />
+                            <Setter TargetName="hl" Property="Background" Value="{StaticResource SelectionBackgroundBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value=".3" />
-                            <Setter Property="Background" TargetName="border" Value="SlateGray" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To=".3" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -103,6 +113,27 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="content"
                                                          Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="content"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To=".5"
+                                                         Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                                          To="1"
                                                          Duration="0:0:0.15" />
                                     </Storyboard>
@@ -425,7 +456,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style TargetType="{x:Type ComboBox}">
+    <Style TargetType="{x:Type ComboBox}" x:Key="ComboBoxMainStyle">
         <Setter Property="FocusVisualStyle" Value="{StaticResource EmptyFocusVisual}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{StaticResource SelectionBorderBrush}" />
@@ -455,6 +486,7 @@
 
     <Style TargetType="{x:Type CheckBox}" x:Key="{x:Type CheckBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource EmptyFocusVisual}" />
+        <Setter Property="extensions:CheckBoxExtensions.Size" Value="16"/>
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="SlateGray" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
@@ -470,19 +502,31 @@
                         <Border x:Name="checkBoxBorder" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 CornerRadius="2">
-                            <Grid x:Name="markGrid" Width="18" Height="18">
+                            <Grid x:Name="markGrid" 
+                                  Width="{TemplateBinding extensions:CheckBoxExtensions.Size}"
+                                  Height="{TemplateBinding extensions:CheckBoxExtensions.Size}"
+
+                                  >
                                 <Path x:Name="base"
                                       Data="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"
                                       Stretch="Uniform"
-                                      Margin="1" />
+                                      Width="{TemplateBinding extensions:CheckBoxExtensions.Size}"
+                                      Height="{TemplateBinding extensions:CheckBoxExtensions.Size}"
+
+
+                                      Margin="0"/>
                                 <Path x:Name="optionMark"
+                                      Width="{TemplateBinding extensions:CheckBoxExtensions.Size}"
+                                      Height="{TemplateBinding extensions:CheckBoxExtensions.Size}"
+
                                       Data="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"
-                                      Fill="{TemplateBinding BorderBrush}" Margin="1" Opacity="0"
+                                      Fill="{TemplateBinding BorderBrush}" Margin="0" Opacity="0"
                                       Stretch="Uniform" />
                                 <Rectangle x:Name="indeterminateMark"
+
                                            Fill="Black" Margin="2" Opacity="0" />
                             </Grid>
                         </Border>
