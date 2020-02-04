@@ -32,7 +32,6 @@ namespace Nostrum.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var val = 0L;
-            var ret = "";
 
             if (value != null) val = System.Convert.ToInt64(value);
             var seconds = val / 1000;
