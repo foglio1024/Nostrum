@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Nostrum.Factories;
+using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using Nostrum;
-using Nostrum.Factories;
 
 namespace Nostrum.Controls
 {

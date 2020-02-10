@@ -1,20 +1,13 @@
-﻿using System;
+﻿using Nostrum.Factories;
+using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using Nostrum.Factories;
 
 namespace Nostrum.Controls
 {
-    //public enum RippleScaleDirection
-    //{
-    //    Up,
-    //    Down
-    //}
-
-    public partial class Ripple : UserControl
+    public partial class Ripple
     {
         /* Fields ***********************************************/
 
@@ -114,7 +107,7 @@ namespace Nostrum.Controls
         {
             var scaleTrans = ((TransformGroup) ripple.RenderTransform).Children[0];
             ((TransformGroup) ripple.RenderTransform).Children[1] = new TranslateTransform(w, h);
-            var fac = ActualWidth * ActualHeight / 150;
+            //var fac = ActualWidth * ActualHeight / 150;
             _scaleRipple.To = 1;
             _scaleRipple.From = null;
             _scaleRipple.Duration = TimeSpan.FromMilliseconds(Duration);
