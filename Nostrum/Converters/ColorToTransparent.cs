@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace Nostrum.Converters
 {
-    public class ColorToTransparent : IValueConverter
+    public class ColorToTransparent : MarkupExtension, IValueConverter
     {
         /// <summary>
         /// 0 to 1
@@ -14,12 +15,7 @@ namespace Nostrum.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!double.TryParse(parameter?.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var opacity))
-            {
-                opacity = Opacity;
-            }
-
-            var alpha = System.Convert.ToByte(255 * opacity);
+            var alpha = System.Convert.ToByte(255 * Opacity);
             switch (value)
             {
                 case SolidColorBrush b:
@@ -37,6 +33,11 @@ namespace Nostrum.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }
