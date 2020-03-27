@@ -66,11 +66,9 @@ namespace Nostrum
             if (IsFileLocked(filename, access)) throw new IOException($"{filename} is used by another process.");
         }
 
-        [DllImport("kernel32.dll")]
-        public static extern int GetCurrentThreadId();
-
-        [DllImport("kernel32.dll")]
-        public static extern bool AllocConsole();
-
+        public static T CastEnum<T>(object val) where T : Enum
+        {
+            return (T)Enum.Parse(typeof(T), val.ToString());
+        }
     }
 }
