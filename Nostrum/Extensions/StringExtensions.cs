@@ -91,5 +91,11 @@ namespace Nostrum.Extensions
             if (openCount > closeCount) sb.Append("</font>");
             return sb.ToString();
         }
+        public static string ToCapital(this string str)
+        {
+            var sb = new StringBuilder(str[0].ToString().ToUpper());
+            sb.Append(str.Substring(1).ToLower());
+            return sb.ToString();
+        }
     }
 }
