@@ -7,11 +7,16 @@ namespace Nostrum.Extensions
 {
     public static class StringExtensions
     {
-        public static byte[] ToByteArrayHex(this string str)
+        /// <summary>
+        /// Converts an hex string to a byte array.
+        /// </summary>
+        /// <param name="hexStr"></param>
+        /// <returns></returns>
+        public static byte[] ToByteArrayHex(this string hexStr)
         {
-            var numberChars = str.Length / 2;
+            var numberChars = hexStr.Length / 2;
             var bytes = new byte[numberChars];
-            using (var sr = new StringReader(str))
+            using (var sr = new StringReader(hexStr))
             {
                 for (var i = 0; i < numberChars; i++)
                     bytes[i] =
@@ -19,6 +24,11 @@ namespace Nostrum.Extensions
             }
             return bytes;
         }
+        /// <summary>
+        /// Converts a string to a byte array.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static byte[] ToByteArray(this string str)
         {
             var ret = new byte[str.Length];

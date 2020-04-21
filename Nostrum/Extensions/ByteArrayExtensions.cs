@@ -4,6 +4,11 @@ namespace Nostrum.Extensions
 {
     public static class ByteArrayExtensions
     {
+        /// <summary>
+        /// Converts each byte to its hex string representation.
+        /// </summary>
+        /// <param name="ba"></param>
+        /// <returns></returns>
         public static string ToStringEx(this byte[] ba)
         {
             var hex = new StringBuilder(ba.Length * 2);
