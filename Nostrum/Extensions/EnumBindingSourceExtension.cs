@@ -5,7 +5,7 @@ namespace Nostrum.Extensions
 {
     public class EnumBindingSourceExtension : MarkupExtension
     {
-        private Type _type;
+        private readonly Type _type;
 
         public EnumBindingSourceExtension(Type enumType)
         {

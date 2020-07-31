@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace Nostrum.Converters
 {
+    /// <summary>
+    /// Returns the index of a <see cref="ListBoxItem"/>.
+    /// </summary>
     public class ListBoxItemIndexConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

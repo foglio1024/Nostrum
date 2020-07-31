@@ -5,6 +5,9 @@ using System.Windows.Markup;
 
 namespace Nostrum.Converters
 {
+    /// <summary>
+    /// Returns value/Max. Returns 0 if the division fails. Can be used as a <see cref="MarkupExtension"/>.
+    /// </summary>
     public class ValueToFactorConverter : MarkupExtension, IValueConverter
     {
         public double Max { get; set; }

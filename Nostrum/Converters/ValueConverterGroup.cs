@@ -6,6 +6,9 @@ using System.Windows.Data;
 
 namespace Nostrum.Converters
 {
+    /// <summary>
+    /// Holds a list of <see cref="IValueConverter"/>s and feeds the result of each one into the next.
+    /// </summary>
     public class ValueConverterGroup : List<IValueConverter>, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

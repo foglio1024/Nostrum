@@ -1,11 +1,13 @@
-﻿using System;
-using System.ComponentModel;
+﻿using Nostrum.Extensions;
+using System;
 using System.Globalization;
 using System.Windows.Data;
-using Nostrum.Extensions;
 
 namespace Nostrum.Converters
 {
+    /// <summary>
+    /// Returns an <see cref="Enum"/> description.
+    /// </summary>
     public class EnumDescriptionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

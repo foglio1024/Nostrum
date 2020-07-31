@@ -10,20 +10,16 @@ namespace Nostrum.Extensions
         /// <summary>
         /// Converts an hex string to a byte array.
         /// </summary>
-        /// <param name="hexStr"></param>
-        /// <returns></returns>
         public static byte[] ToByteArrayHex(this string hexStr)
         {
             var numberChars = hexStr.Length / 2;
             var bytes = new byte[numberChars];
-            using (var sr = new StringReader(hexStr))
-            {
-                for (var i = 0; i < numberChars; i++)
-                    bytes[i] =
-                        Convert.ToByte(new string(new[] { (char)sr.Read(), (char)sr.Read() }), 16);
-            }
+            using var sr = new StringReader(hexStr);
+            for (var i = 0; i < numberChars; i++)
+                bytes[i] = Convert.ToByte(new string(new[] { (char)sr.Read(), (char)sr.Read() }), 16);
             return bytes;
         }
+
         /// <summary>
         /// Converts a string to a byte array.
         /// </summary>
@@ -37,8 +33,11 @@ namespace Nostrum.Extensions
                 ret[i] = Convert.ToByte(str[i]);
             }
             return ret;
-            //return Encoding.Default.GetBytes(str);
         }
+
+        /// <summary>
+        /// Replaces the most common HTML escape sequences.
+        /// </summary>
         public static string UnescapeHtml(this string str)
         {
             str = str.Replace("&lt;", "<");
@@ -48,6 +47,10 @@ namespace Nostrum.Extensions
             str = str.Replace("&amp;", "&");
             return str;
         }
+        
+        /// <summary>
+        /// Escape the most common HTML syntax symbols with their escape sequence.
+        /// </summary>
         public static string EscapeHtml(this string str)
         {
             str = str.Replace("<", "&lt;");
@@ -57,6 +60,10 @@ namespace Nostrum.Extensions
             str = str.Replace("&", "&amp;");
             return str;
         }
+
+        /// <summary>
+        /// Replaces the first occurrence of <paramref name="search"/> with <paramref name="replacement"/> and returns the resulting string. The replacement is case-insensitive.
+        /// </summary>
         public static string ReplaceFirstOccurrenceCaseInsensitive(this string input, string search, string replacement)
         {
             var pos = input.IndexOf(search, StringComparison.InvariantCultureIgnoreCase);
@@ -65,22 +72,28 @@ namespace Nostrum.Extensions
             return result;
         }
 
+        /// <summary>
+        /// Replaces all the occurrences of <paramref name="search"/> with <paramref name="replacement"/> and returns the resulting string. The replacement is case-insensitive.
+        /// </summary>
         public static string ReplaceCaseInsensitive(this string input, string search, string replacement)
         {
             var result = Regex.Replace(
                 input,
                 Regex.Escape(search),
-                replacement.Replace("$", "$$"),
+                replacement.Replace("$", "$$"), // ???
                 RegexOptions.IgnoreCase
             );
             return result;
         }
+
+        /// <summary>
+        /// Wraps the string into &lt;font/&gt; tags if missing or mismatching and returns it.
+        /// </summary>
         public static string AddFontTagsIfMissing(this string msg)
         {
             var sb = new StringBuilder();
             if (!msg.StartsWith("<font", StringComparison.InvariantCultureIgnoreCase))
             {
-
                 if (msg.IndexOf("<font", StringComparison.OrdinalIgnoreCase) > 0)
                 {
                     sb.Append("<font>");
@@ -101,6 +114,10 @@ namespace Nostrum.Extensions
             if (openCount > closeCount) sb.Append("</font>");
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Makes first letter of the word uppercase, while forcing the rest to be lowercase and returns the result.
+        /// </summary>
         public static string ToCapital(this string str)
         {
             var sb = new StringBuilder(str[0].ToString().ToUpper());

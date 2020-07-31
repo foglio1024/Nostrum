@@ -5,6 +5,11 @@ namespace Nostrum.Extensions
 {
     public static class ListExtensions
     {
+        /// <summary>
+        /// Calls <see cref="object.ToString"/> on each element of the list and concatenates them while separating them using commas.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static string ToCSV(this IList list)
         {
             var sb = new StringBuilder();

@@ -8,11 +8,10 @@ namespace Nostrum.Extensions
         /// <summary>
         /// Returns an enumerator description attribute if present, else the enum as string.
         /// </summary>
-        /// <param name="en"></param>
-        /// <returns></returns>
         public static string GetDescription(this Enum en)
         {
             var fi = en.GetType().GetField(en.ToString());
+            if (fi == null) return en.ToString();
             var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return ((attributes.Length > 0)
                     && (!string.IsNullOrEmpty(attributes[0].Description)))

@@ -19,13 +19,13 @@ namespace Nostrum
                 //Log.F($"Failed to check hash on file {fileName}");
                 return "";
             }
-            return SHA256.Create().ComputeHash(fileBuffer).ToStringEx();
+            return SHA256.Create().ComputeHash(fileBuffer).ToHexString();
 
         }
 
         public static string GenerateHash(string input)
         {
-            return SHA256.Create().ComputeHash(input.ToByteArray()).ToStringEx();
+            return SHA256.Create().ComputeHash(input.ToByteArray()).ToHexString();
         }
 
     }

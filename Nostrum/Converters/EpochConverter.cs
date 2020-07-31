@@ -4,13 +4,15 @@ using System.Windows.Data;
 
 namespace Nostrum.Converters
 {
+    /// <summary>
+    /// Converts a Unix time value to a <see cref="DateTime"/>.
+    /// </summary>
     public class EpochConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            if(value is long ux) dt = dt.AddSeconds(ux).ToLocalTime();
-            return dt;
+            if (value is long ux) return TimeUtils.FromUnixTime(ux).ToLocalTime();
+            return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

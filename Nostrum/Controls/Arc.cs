@@ -6,6 +6,9 @@ using System.Windows.Shapes;
 
 namespace Nostrum.Controls
 {
+    /// <summary>
+    /// Renders an arc shape.
+    /// </summary>
     public class Arc : Shape
     {
         public double StartAngle
@@ -66,7 +69,11 @@ namespace Nostrum.Controls
         }
         protected override Geometry DefiningGeometry => GetGeometry();
 
-        private Geometry GetGeometry() => Rhomb ? GetRhombGeometry() : GetArcGeometry();
+        private Geometry GetGeometry()
+        {
+            return Rhomb ? GetRhombGeometry() : GetArcGeometry();
+        }
+
         private Geometry GetArcGeometry()
         {
             var startPoint = PointAtAngle(Math.Min(StartAngle, EndAngle), Direction);

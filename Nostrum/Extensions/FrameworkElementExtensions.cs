@@ -5,7 +5,7 @@ namespace Nostrum.Extensions
     public static class FrameworkElementExtensions
     {
         /// <summary>
-        /// Returns the DataContext of the <see cref="FrameworkElement"/>, casting it to T.
+        /// Returns the DataContext of the <see cref="FrameworkElement"/>, casting it to <typeparamref name="T"/>.
         /// Returns null if the cast fails.
         /// </summary>
         /// <typeparam name="T">return type</typeparam>

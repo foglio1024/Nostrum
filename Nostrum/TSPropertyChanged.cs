@@ -26,6 +26,9 @@ namespace Nostrum
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v)), DispatcherPriority.DataBind);
         }
 
-        public void ExN([CallerMemberName] string v = null) => N(v);
+        public void ExN([CallerMemberName] string v = null)
+        {
+            N(v);
+        }
     }
 }

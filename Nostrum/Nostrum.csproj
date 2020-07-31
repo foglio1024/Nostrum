@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <Company>Foglio</Company>
     <Copyright>MIT</Copyright>
@@ -6,7 +6,7 @@
     <Product>Nostrum</Product>
   </PropertyGroup>
   <PropertyGroup>
-    <Version>1.2.0</Version>
+    <Version>1.2.5</Version>
   </PropertyGroup>
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>

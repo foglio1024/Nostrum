@@ -10,7 +10,14 @@ namespace Nostrum.Converters
         {
             var val = (double?)value;
             var fac = 1D;
-            if (parameter != null) fac = double.Parse(parameter.ToString(), CultureInfo.InvariantCulture);
+            if (parameter != null)
+            {
+#if NETCOREAPP
+                fac = double.Parse(parameter.ToString() ?? "1", CultureInfo.InvariantCulture);
+#elif NETFRAMEWORK
+                fac = double.Parse(parameter.ToString(), CultureInfo.InvariantCulture);
+#endif
+            }
             return val * fac;
         }
 

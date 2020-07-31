@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -66,9 +65,19 @@ namespace Nostrum
             if (IsFileLocked(filename, access)) throw new IOException($"{filename} is used by another process.");
         }
 
+        /// <summary>
+        /// Casts the given object to the enum of type <typeparamref name="T"/>.
+        /// </summary>
+#if NETCOREAPP
+        /// <exception cref="ArgumentNullException"></exception>
+#endif
         public static T CastEnum<T>(object val) where T : Enum
         {
+#if NETCOREAPP
+            return (T)Enum.Parse(typeof(T), val.ToString() ?? throw new ArgumentNullException($"{nameof(val)}.ToString()"));
+#elif NETFRAMEWORK
             return (T)Enum.Parse(typeof(T), val.ToString());
+#endif
         }
     }
 }

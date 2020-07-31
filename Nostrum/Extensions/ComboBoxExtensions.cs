@@ -9,8 +9,15 @@ namespace Nostrum.Extensions
             typeof(Style),
             typeof(ComboBoxExtensions),
             new PropertyMetadata(null));
-        public static Style GetDropDownBorderStyle(DependencyObject obj) => (Style)obj.GetValue(DropDownBorderStyleProperty);
-        public static void SetDropDownBorderStyle(DependencyObject obj, Style value) => obj.SetValue(DropDownBorderStyleProperty, value);
+        public static Style GetDropDownBorderStyle(DependencyObject obj)
+        {
+            return (Style) obj.GetValue(DropDownBorderStyleProperty);
+        }
+
+        public static void SetDropDownBorderStyle(DependencyObject obj, Style value)
+        {
+            obj.SetValue(DropDownBorderStyleProperty, value);
+        }
     }
 
     public class CheckBoxExtensions
@@ -20,9 +27,14 @@ namespace Nostrum.Extensions
                                                                                                      typeof(double), 
                                                                                                      typeof(CheckBoxExtensions), 
                                                                                                      new PropertyMetadata(18D));
-        public static double GetSize(DependencyObject obj) => (double)obj.GetValue(SizeProperty);
-        public static void SetSize(DependencyObject obj, double value) => obj.SetValue(SizeProperty, value);
+        public static double GetSize(DependencyObject obj)
+        {
+            return (double) obj.GetValue(SizeProperty);
+        }
 
-
+        public static void SetSize(DependencyObject obj, double value)
+        {
+            obj.SetValue(SizeProperty, value);
+        }
     }
 }

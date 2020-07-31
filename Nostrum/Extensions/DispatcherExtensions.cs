@@ -8,31 +8,40 @@ namespace Nostrum.Extensions
 {
     public static class DispatcherExtensions
     {
-        public static void InvokeIfRequired(this Dispatcher disp, Action dotIt, DispatcherPriority priority)
+        /// <summary>
+        /// Calls <see cref="Dispatcher.Invoke(DispatcherPriority, Delegate)"/> on this dispatcher if the calling thread is different from the thread of the dispatcher, else the action is executed directly.
+        /// </summary>
+        public static void InvokeIfRequired(this Dispatcher disp, Action action, DispatcherPriority priority)
         {
             if (disp.Thread != Thread.CurrentThread)
-                disp.Invoke(priority, dotIt);
+                disp.Invoke(priority, action);
             else
-                dotIt();
+                action();
         }
-        public static void InvokeAsyncIfRequired(this Dispatcher disp, Action dotIt, DispatcherPriority priority)
+        /// <summary>
+        /// Calls <see cref="Dispatcher.InvokeAsync(Action, DispatcherPriority)"/> on this dispatcher if the calling thread is different from the thread of the dispatcher, else the action is executed directly.
+        /// </summary>
+        public static void InvokeAsyncIfRequired(this Dispatcher disp, Action method, DispatcherPriority priority)
         {
             if (disp.Thread != Thread.CurrentThread)
-                disp.InvokeAsync(dotIt, priority);
+                disp.InvokeAsync(method, priority);
             else
-                dotIt();
+                method();
         }
 
+        /// <summary>
+        /// Invokes an action on this dispatcher to check if it's alive and not deadlocked.
+        /// </summary>
         public static async Task<bool> IsAlive(this Dispatcher d, int timeoutMs)
         {
             var sw = new Stopwatch();
             sw.Start();
             var result = TimeSpan.MaxValue;
             _ = d.InvokeAsync(() =>
-              {
-                  sw.Stop();
-                  result = sw.Elapsed;
-              });
+            {
+                sw.Stop();
+                result = sw.Elapsed;
+            });
             return await Task.Delay(timeoutMs).ContinueWith(t => result != TimeSpan.MaxValue);
 
         }

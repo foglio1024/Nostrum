@@ -10,9 +10,10 @@
     <converters:FactorToAngleConverter x:Key="FactorToAngle"/>
     <converters:ColorToTransparent x:Key="ColorToTransparent"/>
     <converters:MathMultiplicationConverter x:Key="MathMultiplication"/>
-    <converters:NullToVisibleCollapsedConverter x:Key="NullToVisibleCollapsed"/>
-    <converters:DurationLabelConverter x:Key="DurationToTimeFormat"/>
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilty"/>
+    <converters:DurationToStringConverter x:Key="DurationToString"/>
     <converters:ListBoxItemIndexConverter x:Key="ListBoxItemIndex"/>
+    <converters:NullToVisibleCollapsedConverter x:Key="NullToVisibleCollapsed"/>
     <converters:MillisecondsToStringConverter x:Key="MillisecondsToString"/>
 
 </ResourceDictionary>
