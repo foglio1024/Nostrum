@@ -36,6 +36,5 @@ namespace Nostrum.Converters
         {
             return this;
         }
-
     }
 }
