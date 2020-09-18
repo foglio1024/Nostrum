@@ -60,6 +60,12 @@ namespace Nostrum.WinAPI
         [DllImport("user32.dll")]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern bool EnumWindows(EnumThreadDelegate callback, IntPtr extraData);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
+
         #region Enums
         public enum WindowStyles : uint
         {
@@ -147,7 +153,10 @@ namespace Nostrum.WinAPI
                 this.X = x;
                 this.Y = y;
             }
-        } 
+        }
+
+        public delegate bool EnumThreadDelegate(IntPtr hWnd, IntPtr lParam);
+
         #endregion
     }
 }
