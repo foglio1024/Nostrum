@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Nostrum.WinAPI
 {
@@ -65,6 +66,9 @@ namespace Nostrum.WinAPI
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
         #region Enums
         public enum WindowStyles : uint
