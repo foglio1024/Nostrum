@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:extensions="clr-namespace:Nostrum.Extensions"
                     xmlns:controls="clr-namespace:Nostrum.Controls"
-                    xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
+                    xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:converters="clr-namespace:Nostrum.Converters">
 
     <SolidColorBrush x:Key="SelectionBackgroundBrush" Color="White" Opacity=".04" />
     <SolidColorBrush x:Key="SelectionBackgroundLightBrush" Color="White" Opacity=".08" />
@@ -50,7 +51,10 @@
                                          Duration="{TemplateBinding extensions:ButtonExtensions.RippleDuration}"
                                          IsHitTestVisible="{TemplateBinding extensions:ButtonExtensions.RippleEnabled}">
                             <controls:Ripple.Clip>
-                                <MultiBinding Converter="{StaticResource RoundedClipConverter}">
+                                <MultiBinding>
+                                    <MultiBinding.Converter>
+                                        <converters:RoundedClipConverter/>
+                                    </MultiBinding.Converter>
                                     <Binding Path="ActualWidth" ElementName="border" />
                                     <Binding Path="ActualHeight" ElementName="border" />
                                     <Binding Path="CornerRadius" ElementName="border" />
