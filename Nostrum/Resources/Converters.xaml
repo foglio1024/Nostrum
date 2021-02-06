@@ -10,10 +10,7 @@
     <converters:FactorToAngleConverter x:Key="FactorToAngle"/>
     <converters:ColorToTransparent x:Key="ColorToTransparent"/>
     <converters:MathMultiplicationConverter x:Key="MathMultiplication"/>
-    <converters:NullToVisibilityConverter x:Key="NullToVisibilty"/>
+    <converters:NullToVisibilityConverter x:Key="NullToVisibility"/>
     <converters:DurationToStringConverter x:Key="DurationToString"/>
     <converters:ListBoxItemIndexConverter x:Key="ListBoxItemIndex"/>
-    <converters:NullToVisibleCollapsedConverter x:Key="NullToVisibleCollapsed"/>
-    <converters:MillisecondsToStringConverter x:Key="MillisecondsToString"/>
-
 </ResourceDictionary>
