@@ -11,52 +11,84 @@ namespace Nostrum.Controls
     /// </summary>
     public class Arc : Shape
     {
+        /// <summary>
+        /// The Arc's start angle.
+        /// </summary>
         public double StartAngle
         {
             get => (double)GetValue(StartAngleProperty);
             set => SetValue(StartAngleProperty, value);
         }
+        /// <summary>
+        /// The Arc's start angle.
+        /// </summary>
         public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register("StartAngle", typeof(double), typeof(Arc), new UIPropertyMetadata(0.0, UpdateArc));
 
+        /// <summary>
+        /// The Arc's end angle.
+        /// </summary>
         public double EndAngle
         {
             get => (double)GetValue(EndAngleProperty);
             set => SetValue(EndAngleProperty, value);
         }
+        /// <summary>
+        /// The Arc's end angle.
+        /// </summary>
         public static readonly DependencyProperty EndAngleProperty = DependencyProperty.Register("EndAngle", typeof(double), typeof(Arc), new UIPropertyMetadata(90.0, UpdateArc));
 
-        //This controls whether or not the progress bar goes clockwise or counterclockwise
+        /// <summary>
+        /// Controls whether or not the progress bar goes clockwise or counterclockwise.
+        /// </summary>
         public SweepDirection Direction
         {
             get => (SweepDirection)GetValue(DirectionProperty);
             set => SetValue(DirectionProperty, value);
         }
+        /// <summary>
+        /// Controls whether or not the progress bar goes clockwise or counterclockwise.
+        /// </summary>
         public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register("Direction", typeof(SweepDirection), typeof(Arc), new UIPropertyMetadata(SweepDirection.Clockwise));
 
-        //rotate the start/endpoint of the arc a certain number of degree in the direction
+        /// <summary>
+        /// Rotate the start/endpoint of the arc a certain number of degree in the direction.
+        /// </summary>
         public double OriginRotationDegrees
         {
             get => (double)GetValue(OriginRotationDegreesProperty);
             set => SetValue(OriginRotationDegreesProperty, value);
         }
+        /// <summary>
+        /// Rotate the start/endpoint of the arc a certain number of degree in the direction.
+        /// </summary>
         public static readonly DependencyProperty OriginRotationDegreesProperty = DependencyProperty.Register("OriginRotationDegrees", typeof(double), typeof(Arc), new UIPropertyMetadata(270.0, UpdateArc));
 
+        /// <summary>
+        /// If true, uses a rhomb-shaped arc.
+        /// </summary>
         public bool Rhomb
         {
             get => (bool)GetValue(RhombProperty);
             set => SetValue(RhombProperty, value);
         }
+        /// <summary>
+        /// If true, uses a rhomb-shaped arc.
+        /// </summary>
         public static readonly DependencyProperty RhombProperty = DependencyProperty.Register("Rhomb", typeof(bool), typeof(Arc), new PropertyMetadata(false));
 
+
+        /// <inheritdoc />
         protected override void OnRender(DrawingContext drawingContext)
         {
             drawingContext.DrawGeometry(null, new Pen(Stroke, StrokeThickness) { StartLineCap = StrokeStartLineCap, EndLineCap = StrokeEndLineCap }, GetGeometry());
         }
+        /// <inheritdoc />
         protected override void OnMouseEnter(MouseEventArgs e)
         {
             base.OnMouseEnter(e);
             InvalidateMeasure();
         }
+        /// <inheritdoc />
         protected override Size MeasureOverride(Size constraint)
         {
             var ret = base.MeasureOverride(constraint);
@@ -67,6 +99,7 @@ namespace Nostrum.Controls
             }
             return ret;
         }
+        /// <inheritdoc />
         protected override Geometry DefiningGeometry => GetGeometry();
 
         private Geometry GetGeometry()

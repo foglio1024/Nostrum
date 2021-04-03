@@ -65,11 +65,15 @@ namespace Nostrum
             if (IsFileLocked(filename, access)) throw new IOException($"{filename} is used by another process.");
         }
 
+#if NETCOREAPP
         /// <summary>
         /// Casts the given object to the enum of type <typeparamref name="T"/>.
         /// </summary>
-#if NETCOREAPP
         /// <exception cref="ArgumentNullException"></exception>
+#else
+        /// <summary>
+        /// Casts the given object to the enum of type <typeparamref name="T"/>.
+        /// </summary>
 #endif
         public static T CastEnum<T>(object val) where T : Enum
         {
