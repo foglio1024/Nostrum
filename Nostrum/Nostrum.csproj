@@ -13,7 +13,7 @@
     <AssemblyName>Nostrum</AssemblyName>
     <DebugType>portable</DebugType>
     <Deterministic>true</Deterministic>
-    <LangVersion>8</LangVersion>
+    <LangVersion>9</LangVersion>
     <OutputType>Library</OutputType>
     <RootNamespace>Nostrum</RootNamespace>
     <TargetFrameworks>netcoreapp3.1;net48</TargetFrameworks>
@@ -26,7 +26,7 @@
     <IsPublishable>false</IsPublishable>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+ <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="PresentationFramework.Aero" />
   </ItemGroup>
   <ItemGroup>
