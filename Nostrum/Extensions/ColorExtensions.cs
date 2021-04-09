@@ -1,5 +1,8 @@
 ﻿namespace Nostrum.Extensions
 {
+    /// <summary>
+    /// Extension methods for the <see cref="System.Drawing.Color"/> and <see cref="System.Windows.Media.Color"/> types.
+    /// </summary>
     public static class ColorExtensions
     {
         /// <summary>

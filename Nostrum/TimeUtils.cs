@@ -2,6 +2,9 @@
 
 namespace Nostrum
 {
+    /// <summary>
+    /// Utilities for time calculations and string formatting of time-related data types.
+    /// </summary>
     public static class TimeUtils
     {
         /// <summary>
@@ -58,7 +61,6 @@ namespace Nostrum
             var days = Math.Floor(ts.TotalDays);
             return $"{days}d";
         }
-
 
         /// <summary>
         /// Returns <c>"sec.ms"</c> if the amount is less than 10 seconds, <see cref="FormatSeconds(ulong)"/> otherwise. Milliseconds are omitted by default.
@@ -122,6 +124,6 @@ namespace Nostrum
             return seconds / (60 * 60 * 24) + "d";
         }
 
-        #endregion
+        #endregion Obsolete
     }
 }

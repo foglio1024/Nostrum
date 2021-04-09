@@ -10,11 +10,13 @@ namespace Nostrum.Converters
     /// </summary>
     public class EnumDescriptionConverter : IValueConverter
     {
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value is Enum e ? e.GetDescription() : "";
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

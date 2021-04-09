@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace Nostrum.Extensions
 {
+    /// <summary>
+    /// Extension methods for the <see cref="Assembly"/> type.
+    /// </summary>
     public static class AssemblyExtensions
     {
         /// <summary>

@@ -5,6 +5,9 @@ using System.Windows.Media.Imaging;
 
 namespace Nostrum.Extensions
 {
+    /// <summary>
+    /// Extension methods for the <see cref="Bitmap"/> type.
+    /// </summary>
     public static class BitmapExtensions
     {
         /// <summary>
@@ -27,6 +30,5 @@ namespace Nostrum.Extensions
             ms.Dispose();
             return bitmapimage;
         }
-
     }
 }

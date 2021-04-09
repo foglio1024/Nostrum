@@ -10,6 +10,7 @@ namespace Nostrum.Converters
     [Obsolete("Use DurationToStringConverter instead")]
     public class MillisecondsToStringConverter : IValueConverter
     {
+        /// <inheritdoc />
         public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             var ms = 0L;
@@ -27,6 +28,7 @@ namespace Nostrum.Converters
             return $"{days}d {hours - (days * 24)}h {minutes - (hours * 60)}m";
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

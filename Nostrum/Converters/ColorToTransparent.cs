@@ -14,10 +14,11 @@ namespace Nostrum.Converters
     public class ColorToTransparent : MarkupExtension, IValueConverter
     {
         /// <summary>
-        /// 0 to 1
+        /// Gets or sets opacity value (0 to 1).
         /// </summary>
         public double Opacity { get; set; }
 
+        /// <inheritdoc />
         public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var alpha = System.Convert.ToByte(255 * Opacity);
@@ -29,11 +30,13 @@ namespace Nostrum.Converters
             };
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return this;

@@ -4,8 +4,12 @@ using System.Windows.Data;
 
 namespace Nostrum.Converters
 {
+    /// <summary>
+    /// Multiplies the given value by the given parameters. Both values are treated as <see cref="double"/>.
+    /// </summary>
     public class MathMultiplicationConverter : IValueConverter
     {
+        /// <inheritdoc />
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             var val = (double?)value;
@@ -21,10 +25,10 @@ namespace Nostrum.Converters
             return val * fac;
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
     }
-
 }

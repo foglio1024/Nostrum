@@ -4,6 +4,9 @@ using System.Windows;
 
 namespace Nostrum.Extensions
 {
+    /// <summary>
+    /// Extension methods for the <see cref="Application"/> type.
+    /// </summary>
     public static class ApplicationExtensions
     {
         /// <summary>

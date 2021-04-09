@@ -11,6 +11,7 @@ namespace Nostrum.Converters
     /// </summary>
     public class RoundedClipConverter : IMultiValueConverter
     {
+        /// <inheritdoc />
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length != 3 || !(values[0] is double width) || !(values[1] is double height) || !(values[2] is CornerRadius radius))
@@ -26,6 +27,7 @@ namespace Nostrum.Converters
             return clip;
         }
 
+        /// <inheritdoc />
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

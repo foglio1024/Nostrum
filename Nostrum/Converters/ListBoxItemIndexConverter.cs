@@ -10,13 +10,15 @@ namespace Nostrum.Converters
     /// </summary>
     public class ListBoxItemIndexConverter : IValueConverter
     {
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is ListBoxItem lbi)) return -1;
-            var lv = (ListBox) ItemsControl.ItemsControlFromItemContainer(lbi);
+            if (value is not ListBoxItem lbi) return -1;
+            var lv = (ListBox)ItemsControl.ItemsControlFromItemContainer(lbi);
             return lv.ItemContainerGenerator.IndexFromContainer(lbi) + 1;
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

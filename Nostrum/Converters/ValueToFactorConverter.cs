@@ -10,7 +10,12 @@ namespace Nostrum.Converters
     /// </summary>
     public class ValueToFactorConverter : MarkupExtension, IValueConverter
     {
+        /// <summary>
+        /// Gets or sets the value by which dividing the input value.
+        /// </summary>
         public double Max { get; set; }
+
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -25,11 +30,13 @@ namespace Nostrum.Converters
             }
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return this;

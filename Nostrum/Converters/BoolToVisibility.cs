@@ -16,10 +16,17 @@ namespace Nostrum.Converters
     /// </summary>
     public class BoolToVisibility : MarkupExtension, IValueConverter
     {
+        /// <summary>
+        /// Inverts the conversion logic.
+        /// </summary>
         public bool Invert { get; set; }
 
+        /// <summary>
+        /// Sets whether to use <see cref="Visibility.Collapsed"/> or <see cref="Visibility.Hidden"/>
+        /// </summary>
         public Visibility Mode { get; set; } = Visibility.Collapsed;
 
+        /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is bool b)) return Mode;
@@ -27,11 +34,13 @@ namespace Nostrum.Converters
             return b ? Visibility.Visible : Mode;
         }
 
+        /// <inheritdoc />
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return this;

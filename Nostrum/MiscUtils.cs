@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -7,29 +8,45 @@ using System.Threading.Tasks;
 using System.Windows;
 using Color = System.Windows.Media.Color;
 
-
 namespace Nostrum
 {
     public static class MiscUtils // TODO: separate these
     {
-        public static Color ParseColor(string col)
+        public const string DefaultUserAgent =
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36";
+
+        /// <summary>
+        /// Parses a <see cref="Color"/> from an hex string. The input can be in the "#RRGGBB" or "RRGGBB" format.
+        /// </summary>
+        /// <param name="input">the color string in "#RRGGBB" or "RRGGBB" format</param>
+        /// <returns>the <see cref="Color"/> struct representing the given color string</returns>
+        public static Color ParseColor(string input)
         {
-            if (col.StartsWith("#")) col = col.Substring(1);
+            if (input.StartsWith("#")) input = input.Substring(1);
             return Color.FromRgb(
-                Convert.ToByte(col.Substring(0, 2), 16),
-                Convert.ToByte(col.Substring(2, 2), 16),
-                Convert.ToByte(col.Substring(4, 2), 16));
+                Convert.ToByte(input.Substring(0, 2), 16),
+                Convert.ToByte(input.Substring(2, 2), 16),
+                Convert.ToByte(input.Substring(4, 2), 16));
         }
 
+        /// <summary>
+        /// Sets the <see cref="SecurityProtocolType"/> to <see cref="SecurityProtocolType.Tls12"/>, then creates a new <see cref="WebClient"/> and sets <see cref="HttpRequestHeader.UserAgent"/> to <see cref="DefaultUserAgent"/>
+        /// </summary>
+        /// <returns>the constructed <see cref="WebClient"/></returns>
         public static WebClient GetDefaultWebClient()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var wc = new WebClient();
-            wc.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36");
+            wc.Headers.Add(HttpRequestHeader.UserAgent, DefaultUserAgent);
             return wc;
-
         }
 
+        /// <summary>
+        /// Checks if a file is locked.
+        /// </summary>
+        /// <param name="filename">the uriPath to the file</param>
+        /// <param name="fileAccess">the file access type</param>
+        /// <returns>true if the file is locked, false otherwise</returns>
         public static bool IsFileLocked(string filename, FileAccess fileAccess)
         {
             // Try to open the file with the indicated access.
@@ -45,22 +62,41 @@ namespace Nostrum
             }
         }
 
-        public static Icon? GetEmbeddedIcon(string path)
+        /// <summary>
+        /// Retrieves a resource stream and creates an <see cref="Icon"/> from it.
+        /// </summary>
+        /// <param name="uriPath">the uri of the icon resource</param>
+        /// <returns>the Icon if found, null otherwise</returns>
+        public static Icon? GetEmbeddedIcon(string uriPath)
         {
-            var stream = Application.GetResourceStream(new Uri(path, UriKind.Relative))?.Stream;
+            var stream = Application.GetResourceStream(new Uri(uriPath, UriKind.Relative))?.Stream;
             return stream == null ? null : new Icon(stream);
         }
-#pragma warning disable 1998
+
+        /// <summary>
+        /// Waits for the specified file to become unlocked.
+        /// </summary>
+        /// <param name="filename">the path of the file to check</param>
+        /// <param name="access">the file access type</param>
+        /// <param name="interval">the interval to wait for each repeated check</param>
+        /// <param name="timeout">the total timeout to wait before stopping the check in case the file is never unlocked</param>
+        /// <returns></returns>
         public static async Task WaitForFileUnlock(string filename, FileAccess access, int interval = 500, int timeout = 2000)
-#pragma warning restore 1998
         {
             var elapsedTime = 0;
             while (elapsedTime < timeout)
             {
-                if (IsFileLocked(filename, access)) elapsedTime += interval;
-                else break;
-                Thread.Sleep(interval);
-                Console.WriteLine("Waiting to open file");
+                if (IsFileLocked(filename, access))
+                {
+                    elapsedTime += interval;
+                }
+                else
+                {
+                    break;
+                }
+
+                Debug.WriteLine("Waiting to open file");
+                await Task.Delay(interval);
             }
             if (IsFileLocked(filename, access)) throw new IOException($"{filename} is used by another process.");
         }
