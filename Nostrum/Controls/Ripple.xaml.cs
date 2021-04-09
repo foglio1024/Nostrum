@@ -86,7 +86,7 @@ namespace Nostrum.Controls
 
         /* Methods **********************************************/
 
-        private void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void OnPreviewMouseLeftButtonDown(object? sender, MouseButtonEventArgs? e)
         {
             if (!_firstClick) Reset();
             if (StaysVisible)
@@ -116,7 +116,7 @@ namespace Nostrum.Controls
             scaleTrans.BeginAnimation(ScaleTransform.ScaleYProperty, _scaleRipple);
         }
 
-        private void HideRipple(object s, object e)
+        private void HideRipple(object? s, object e)
         {
             var scaleTrans = (ScaleTransform) ((TransformGroup) ripple.RenderTransform).Children[0];
 
@@ -158,7 +158,7 @@ namespace Nostrum.Controls
             _firstClick = true;
         }
 
-        public void Trigger(MouseButtonEventArgs e = null)
+        public void Trigger(MouseButtonEventArgs? e = null)
         {
             Dispatcher?.BeginInvoke(new Action(() => OnPreviewMouseLeftButtonDown(null, e)));
         }

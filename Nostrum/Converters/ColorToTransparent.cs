@@ -18,7 +18,7 @@ namespace Nostrum.Converters
         /// </summary>
         public double Opacity { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var alpha = System.Convert.ToByte(255 * Opacity);
             return value switch

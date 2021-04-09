@@ -10,7 +10,7 @@ namespace Nostrum.Converters
     [Obsolete("Use DurationToStringConverter instead")]
     public class MillisecondsToStringConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             var ms = 0L;
 

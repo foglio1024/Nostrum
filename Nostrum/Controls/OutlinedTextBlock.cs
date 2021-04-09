@@ -8,7 +8,6 @@ using System.Windows.Media;
 
 namespace Nostrum.Controls
 {
-
     [ContentProperty("Text")]
     public class OutlinedTextBlock : FrameworkElement
     {
@@ -98,9 +97,9 @@ namespace Nostrum.Controls
           typeof(OutlinedTextBlock),
           new FrameworkPropertyMetadata(TextWrapping.NoWrap, OnFormattedTextUpdated));
 
-        private FormattedText _formattedText;
-        private Geometry _textGeometry;
-        private Pen _pen;
+        private FormattedText? _formattedText;
+        private Geometry? _textGeometry;
+        private Pen _pen = null!;
 
         public Brush Fill
         {
@@ -151,7 +150,7 @@ namespace Nostrum.Controls
             set => SetValue(StrokeThicknessProperty, value);
         }
 
-        public string Text
+        public string? Text
         {
             get => (string)GetValue(TextProperty);
             set => SetValue(TextProperty, value);
@@ -197,7 +196,7 @@ namespace Nostrum.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            EnsureFormattedText();
+            EnsureFormattedText(); // _formattedText is not null after this
 
             // constrain the formatted text according to the available size
 
@@ -206,8 +205,8 @@ namespace Nostrum.Controls
 
             // the Math.Min call is important - without this constraint (which seems arbitrary, but is the maximum allowable text width), things blow up when availableSize is infinite in both directions
             // the Math.Max call is to ensure we don't hit zero, which will cause MaxTextHeight to throw
-            _formattedText.MaxTextWidth = Math.Min(3579139, w);
-            _formattedText.MaxTextHeight = Math.Max(0.0001d, h);
+            _formattedText!.MaxTextWidth = Math.Min(3579139, w);
+            _formattedText!.MaxTextHeight = Math.Max(0.0001d, h);
 
             // return the desired size
             return new Size(Math.Ceiling(_formattedText.Width), Math.Ceiling(_formattedText.Height));
@@ -215,11 +214,11 @@ namespace Nostrum.Controls
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            EnsureFormattedText();
+            EnsureFormattedText(); // _formattedText is not null after this
 
             // update the formatted text with the final size
-            _formattedText.MaxTextWidth = finalSize.Width;
-            _formattedText.MaxTextHeight = Math.Max(0.0001d, finalSize.Height);
+            _formattedText!.MaxTextWidth = finalSize.Width;
+            _formattedText!.MaxTextHeight = Math.Max(0.0001d, finalSize.Height);
 
             // need to re-generate the geometry now that the dimensions have changed
             _textGeometry = null;
@@ -294,8 +293,8 @@ namespace Nostrum.Controls
                 return;
             }
 
-            EnsureFormattedText();
-            _textGeometry = _formattedText.BuildGeometry(new Point(0, 0));
+            EnsureFormattedText(); // _formattedText is not null after this
+            _textGeometry = _formattedText!.BuildGeometry(new Point(0, 0));
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Nostrum
             }
         }
 
-        public static Icon GetEmbeddedIcon(string path)
+        public static Icon? GetEmbeddedIcon(string path)
         {
             var stream = Application.GetResourceStream(new Uri(path, UriKind.Relative))?.Stream;
             return stream == null ? null : new Icon(stream);

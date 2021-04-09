@@ -12,7 +12,7 @@ namespace Nostrum.Extensions
         /// <param name="assembly"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static Stream GetResourceStream(this Assembly assembly, string name)
+        public static Stream? GetResourceStream(this Assembly assembly, string name)
         {
             return assembly.GetManifestResourceStream(assembly.GetManifestResourceNames().Single(x => x.EndsWith(name)));
         }

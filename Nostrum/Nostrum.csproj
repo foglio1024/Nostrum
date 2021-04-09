@@ -4,6 +4,7 @@
     <Copyright>MIT</Copyright>
     <Description>Small collection of XAML resources, controls, extensions methods and utilities.</Description>
     <Product>Nostrum</Product>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
     <Version>1.2.14</Version>

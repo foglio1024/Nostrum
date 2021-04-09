@@ -21,7 +21,7 @@ namespace Nostrum.Converters
         public uint MaxDays { get; set; } = 1;
         public FormatMode Mode { get; set; } = FormatMode.Single;
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             var ms = 0D;
             if (value != null) ms = System.Convert.ToDouble(value);

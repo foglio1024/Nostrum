@@ -10,10 +10,9 @@ namespace Nostrum.Extensions
         /// </summary>
         /// <typeparam name="T">return type</typeparam>
         /// <returns>the DataContext casted to T</returns>
-        public static T GetDataContext<T>(this FrameworkElement fe) where T : class
+        public static T? GetDataContext<T>(this FrameworkElement fe) where T : class
         {
-            if (!(fe.DataContext is T t)) return null;
-            return t;
+            return fe.DataContext is not T t ? null : t;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Nostrum.Extensions
                 sw.Stop();
                 result = sw.Elapsed;
             });
-            return await Task.Delay(timeoutMs).ContinueWith(t => result != TimeSpan.MaxValue);
+            return await Task.Delay(timeoutMs).ContinueWith(_ => result != TimeSpan.MaxValue);
 
         }
     }

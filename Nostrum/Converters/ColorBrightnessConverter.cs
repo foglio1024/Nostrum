@@ -9,7 +9,7 @@ namespace Nostrum.Converters
     public class ColorBrightnessConverter : MarkupExtension, IValueConverter
     {
         public float Factor { get; set; } = 1;
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is Color c)) return null;
             var originalAlpha = c.A;

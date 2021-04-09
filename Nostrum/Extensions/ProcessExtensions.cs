@@ -17,7 +17,7 @@ namespace Nostrum.Extensions
         public static IEnumerable<IntPtr> GetProcessWindows(this Process p)
         {
             var windows = new List<IntPtr>();
-            User32.EnumWindows((hwnd, prm) =>
+            User32.EnumWindows((hwnd, _) =>
             {
                 User32.GetWindowThreadProcessId(hwnd, out var proc);
                 if (p.Id != proc) return true;

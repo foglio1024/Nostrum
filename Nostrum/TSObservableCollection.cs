@@ -21,7 +21,7 @@ namespace Nostrum
             BindingOperations.EnableCollectionSynchronization(this, _lock);
         }
 
-        public TSObservableCollection(Dispatcher d)
+        public TSObservableCollection(Dispatcher? d)
         {
             _dispatcher = d ?? Dispatcher.CurrentDispatcher;
             _lock = new ReaderWriterLockSlim();

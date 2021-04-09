@@ -26,7 +26,7 @@ namespace Nostrum.Converters
         public Visibility Mode { get; set; } = Visibility.Collapsed;
 
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             var v = value == null;
             if (Invert) v = !v;
@@ -54,7 +54,7 @@ namespace Nostrum.Converters
     public class NullToVisibleCollapsedConverter : IValueConverter
     {
         /// <inheritdoc />
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             return value == null ? Visibility.Collapsed : Visibility.Visible;
         }

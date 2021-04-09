@@ -11,7 +11,7 @@ namespace Nostrum.Extensions
         /// </summary>
         public static void RefreshTemplate(this ItemsControl el, string resName)
         {
-            el?.Dispatcher?.InvokeAsync(() =>
+            el.Dispatcher?.InvokeAsync(() =>
             {
                 el.ItemTemplateSelector = null;
                 el.ItemTemplateSelector = Application.Current.FindResource(resName) as DataTemplateSelector;
@@ -23,7 +23,7 @@ namespace Nostrum.Extensions
         /// </summary>
         public static void RefreshTemplate(this ItemsControl el, DataTemplateSelector selector)
         {
-            el?.Dispatcher?.InvokeAsync(() =>
+            el.Dispatcher?.InvokeAsync(() =>
             {
                 el.ItemTemplateSelector = null;
                 el.ItemTemplateSelector = selector;

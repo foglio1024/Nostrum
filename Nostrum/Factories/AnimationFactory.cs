@@ -13,7 +13,7 @@ namespace Nostrum.Factories
         /// <summary>
         /// Creates a <see cref="DoubleAnimation"/> and sets its parameters, then returns it.
         /// </summary>
-        public static DoubleAnimation CreateDoubleAnimation(int ms, double to, double from = double.NaN, bool easing = false, EventHandler completed = null, int framerate = 60, int delay = 0)
+        public static DoubleAnimation CreateDoubleAnimation(int ms, double to, double from = double.NaN, bool easing = false, EventHandler? completed = null, int framerate = 60, int delay = 0)
         {
             var ret = new DoubleAnimation
             {
@@ -31,7 +31,7 @@ namespace Nostrum.Factories
         /// <summary>
         /// Creates a <see cref="ThicknessAnimation"/> and sets its parameters, then returns it.
         /// </summary>
-        public static ThicknessAnimation CreateThicknessAnimation(int ms, Thickness to, bool easing = false, EventHandler completed = null, int framerate = 60, int delay = 0)
+        public static ThicknessAnimation CreateThicknessAnimation(int ms, Thickness to, bool easing = false, EventHandler? completed = null, int framerate = 60, int delay = 0)
         {
             var ret = new ThicknessAnimation
             {
@@ -48,7 +48,7 @@ namespace Nostrum.Factories
         /// <summary>
         /// <inheritdoc cref="CreateThicknessAnimation(int,Thickness,bool,EventHandler,int,int)"/>
         /// </summary>
-        public static ThicknessAnimation CreateThicknessAnimation(int ms, Thickness to, Thickness from, bool easing = false, EventHandler completed = null, int framerate = 60, int delay = 0)
+        public static ThicknessAnimation CreateThicknessAnimation(int ms, Thickness to, Thickness from, bool easing = false, EventHandler? completed = null, int framerate = 60, int delay = 0)
         {
             var ret = CreateThicknessAnimation(ms, to, easing: easing, completed, framerate, delay);
             ret.From = from;

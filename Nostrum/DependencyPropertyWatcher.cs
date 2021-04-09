@@ -32,7 +32,7 @@ namespace Nostrum
         /// <summary>
         /// Property changed event handler.
         /// </summary>
-        public event EventHandler PropertyChanged;
+        public event EventHandler? PropertyChanged;
 
         /// <summary>
         /// Default constructor.

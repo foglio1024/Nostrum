@@ -58,7 +58,7 @@ namespace Nostrum.Controls
             _dpw.PropertyChanged += StatusWatcher_PropertyChanged;
         }
 
-        private void StatusWatcher_PropertyChanged(object sender, EventArgs e)
+        private void StatusWatcher_PropertyChanged(object? sender, EventArgs e)
         {
             if (Status)
                 AnimateOn();
