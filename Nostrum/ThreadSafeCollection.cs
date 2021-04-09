@@ -1,30 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using Nostrum.Extensions;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows.Data;
 using System.Windows.Threading;
-using Nostrum.Extensions;
 
 namespace Nostrum
 {
-    public class TSCollection<T> : Collection<T>
+    public class ThreadSafeCollection<T> : Collection<T>
     {
         private readonly Dispatcher _dispatcher;
         private readonly ReaderWriterLockSlim _lock;
 
-        public TSCollection()
+        public ThreadSafeCollection()
         {
             _dispatcher = Dispatcher.CurrentDispatcher;
             _lock = new ReaderWriterLockSlim();
             BindingOperations.EnableCollectionSynchronization(this, _lock);
         }
-        public TSCollection(Dispatcher? d)
+
+        public ThreadSafeCollection(Dispatcher? d)
         {
             _dispatcher = d ?? Dispatcher.CurrentDispatcher;
             _lock = new ReaderWriterLockSlim();
             BindingOperations.EnableCollectionSynchronization(this, _lock);
         }
-
 
         protected override void ClearItems()
         {
@@ -41,6 +41,7 @@ namespace Nostrum
                 }
             }, DispatcherPriority.DataBind);
         }
+
         protected override void InsertItem(int index, T item)
         {
             _dispatcher.InvokeIfRequired(() =>
@@ -58,6 +59,7 @@ namespace Nostrum
                 }
             }, DispatcherPriority.DataBind);
         }
+
         protected override void RemoveItem(int index)
         {
             _dispatcher.InvokeIfRequired(() =>
@@ -75,6 +77,7 @@ namespace Nostrum
                 }
             }, DispatcherPriority.DataBind);
         }
+
         protected override void SetItem(int index, T item)
         {
             _dispatcher.InvokeIfRequired(() =>
@@ -90,6 +93,7 @@ namespace Nostrum
                 }
             }, DispatcherPriority.DataBind);
         }
+
         public List<T> ToSyncList()
         {
             _lock.EnterReadLock();
@@ -104,6 +108,5 @@ namespace Nostrum
                 _lock.ExitReadLock();
             }
         }
-
     }
 }

@@ -1,27 +1,27 @@
 ﻿//#define BATCH
 
+using Nostrum.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows.Data;
 using System.Windows.Threading;
-using Nostrum.Extensions;
 
 namespace Nostrum
 {
-    public class TSObservableCollection<T> : ObservableCollection<T>
+    public class ThreadSafeObservableCollection<T> : ObservableCollection<T>
     {
         private readonly Dispatcher _dispatcher;
         private readonly ReaderWriterLockSlim _lock;
 
-        public TSObservableCollection()
+        public ThreadSafeObservableCollection()
         {
             _dispatcher = Dispatcher.CurrentDispatcher;
             _lock = new ReaderWriterLockSlim();
             BindingOperations.EnableCollectionSynchronization(this, _lock);
         }
 
-        public TSObservableCollection(Dispatcher? d)
+        public ThreadSafeObservableCollection(Dispatcher? d)
         {
             _dispatcher = d ?? Dispatcher.CurrentDispatcher;
             _lock = new ReaderWriterLockSlim();

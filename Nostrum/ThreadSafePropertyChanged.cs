@@ -5,7 +5,7 @@ using Nostrum.Extensions;
 
 namespace Nostrum
 {
-    public class TSPropertyChanged : INotifyPropertyChanged
+    public class ThreadSafePropertyChanged : INotifyPropertyChanged
     {
         protected Dispatcher? Dispatcher;
         public event PropertyChangedEventHandler? PropertyChanged;
