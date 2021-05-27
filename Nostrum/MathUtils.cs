@@ -1,6 +1,4 @@
-﻿using Point = System.Windows.Point;
-
-namespace Nostrum
+﻿namespace Nostrum
 {
     public static class MathUtils
     {
@@ -28,19 +26,6 @@ namespace Nostrum
                     ? 1
                     : input / max
                 : 1;
-        }
-
-        /// <summary>
-        /// Subtracts the center point coordinates from the input point coordinates to obtain the input point's coordinates relative to the center point.
-        /// </summary>
-        /// <param name="inputX">input X coordinate</param>
-        /// <param name="inputY">input Y coordinate</param>
-        /// <param name="centerX">center X coordinate</param>
-        /// <param name="centerY">center Y coordinate</param>
-        /// <returns>the input points with coordinates relative to the center point</returns>
-        public static Point GetRelativePoint(double inputX, double inputY, double centerX, double centerY)
-        {
-            return new Point(inputX - centerX, inputY - centerY);
         }
     }
 }

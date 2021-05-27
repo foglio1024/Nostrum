@@ -1,33 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using Color = System.Windows.Media.Color;
 
 namespace Nostrum
 {
-    public static class MiscUtils // TODO: separate these
+    public static class MiscUtils
     {
         public const string DefaultUserAgent =
             "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36";
-
-        /// <summary>
-        /// Parses a <see cref="Color"/> from an hex string. The input can be in the "#RRGGBB" or "RRGGBB" format.
-        /// </summary>
-        /// <param name="input">the color string in "#RRGGBB" or "RRGGBB" format</param>
-        /// <returns>the <see cref="Color"/> struct representing the given color string</returns>
-        public static Color ParseColor(string input)
-        {
-            if (input.StartsWith("#")) input = input.Substring(1);
-            return Color.FromRgb(
-                Convert.ToByte(input.Substring(0, 2), 16),
-                Convert.ToByte(input.Substring(2, 2), 16),
-                Convert.ToByte(input.Substring(4, 2), 16));
-        }
 
         /// <summary>
         /// Sets the <see cref="SecurityProtocolType"/> to <see cref="SecurityProtocolType.Tls12"/>, then creates a new <see cref="WebClient"/> and sets <see cref="HttpRequestHeader.UserAgent"/> to <see cref="DefaultUserAgent"/>
@@ -60,17 +42,6 @@ namespace Nostrum
             {
                 return true;
             }
-        }
-
-        /// <summary>
-        /// Retrieves a resource stream and creates an <see cref="Icon"/> from it.
-        /// </summary>
-        /// <param name="uriPath">the uri of the icon resource</param>
-        /// <returns>the Icon if found, null otherwise</returns>
-        public static Icon? GetEmbeddedIcon(string uriPath)
-        {
-            var stream = Application.GetResourceStream(new Uri(uriPath, UriKind.Relative))?.Stream;
-            return stream == null ? null : new Icon(stream);
         }
 
         /// <summary>
@@ -111,6 +82,7 @@ namespace Nostrum
         /// Casts the given object to the enum of type <typeparamref name="T"/>.
         /// </summary>
 #endif
+
         public static T CastEnum<T>(object val) where T : Enum
         {
 #if NETCOREAPP

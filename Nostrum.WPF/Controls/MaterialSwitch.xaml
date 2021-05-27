@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Nostrum.WPF.Controls.MaterialSwitch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Nostrum.WPF.Controls"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid VerticalAlignment="Center" Width="50" Height="50" Cursor="Hand">
+        <Rectangle x:Name="SwitchBack" Width="40" Height="14" RadiusX="7" RadiusY="7" Opacity=".35">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{Binding OffColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:MaterialSwitch}}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Ellipse x:Name="SwitchHead"
+                 HorizontalAlignment="Center"
+                 Width="20" Height="20" Margin="-20,0,0,0">
+            <Ellipse.Fill>
+                <SolidColorBrush Color="{Binding OffColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:MaterialSwitch}}"/>
+            </Ellipse.Fill>
+            <Ellipse.Effect>
+                <DropShadowEffect ShadowDepth="2" Opacity=".55" BlurRadius="6" />
+            </Ellipse.Effect>
+            <Ellipse.RenderTransform>
+                <TranslateTransform/>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+    </Grid>
+</UserControl>
