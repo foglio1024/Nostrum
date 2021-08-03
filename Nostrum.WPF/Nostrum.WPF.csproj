@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>1.2.1</Version>
   </PropertyGroup>
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -27,13 +27,7 @@
     <IsPublishable>false</IsPublishable>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Page Remove="Resources\Converters.xaml" />
-    <Page Remove="Resources\MiscResources.xaml" />
-    <Page Remove="Resources\Styles.xaml" />
-    <Page Remove="Resources\SVG.xaml" />
-  </ItemGroup>
-  <!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
     <DocumentationFile>D:\Repos\Nostrum\Nostrum\Nostrum.xml</DocumentationFile>
   </PropertyGroup>-->
  <!--<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
@@ -44,18 +38,6 @@
       <Pack>true</Pack>
       <PackagePath>%(Filename)%(Extension)</PackagePath>
       <Visible>false</Visible>
-    </None>
-    <None Include="Resources\Converters.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Resources\MiscResources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Resources\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Resources\SVG.xaml">
-      <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>
   <ItemGroup>
