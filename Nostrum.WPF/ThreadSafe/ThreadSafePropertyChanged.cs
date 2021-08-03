@@ -1,7 +1,8 @@
-﻿using System.ComponentModel;
+﻿using Nostrum.WPF.Extensions;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Threading;
-using Nostrum.WPF.Extensions;
 
 namespace Nostrum.WPF.ThreadSafe
 {
@@ -39,11 +40,25 @@ namespace Nostrum.WPF.ThreadSafe
         /// Fires the <see cref="PropertyChanged"/> event.
         /// </summary>
         /// <param name="propertyName">the name of the changed property</param>
-        protected void N([CallerMemberName] string? propertyName = null)
+        protected void N([CallerMemberName] string? propertyName = null, int delayMs = 0)
         {
-            if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
-            _dispatcher!.InvokeAsyncIfRequired(() =>
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)), DispatcherPriority.DataBind);
+            if (delayMs > 0)
+            {
+                Task.Factory.StartNew(async () =>
+                {
+                    await Task.Delay(delayMs);
+                    if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
+                    _dispatcher!.InvokeAsyncIfRequired(() =>
+                            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)),
+                        DispatcherPriority.DataBind);
+                });
+            }
+            else
+            {
+                if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
+                _dispatcher!.InvokeAsyncIfRequired(() =>
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)), DispatcherPriority.DataBind);
+            }
         }
 
         /// <summary>
