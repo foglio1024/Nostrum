@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:extensions="clr-namespace:Nostrum.Extensions"
-                    xmlns:controls="clr-namespace:Nostrum.Controls"
+                    xmlns:extensions="clr-namespace:Nostrum.WPF.Extensions"
+                    xmlns:controls="clr-namespace:Nostrum.WPF.Controls"
                     xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-                    xmlns:converters="clr-namespace:Nostrum.Converters">
+                    xmlns:converters="clr-namespace:Nostrum.WPF.Converters">
 
     <SolidColorBrush x:Key="SelectionBackgroundBrush" Color="White" Opacity=".04" />
     <SolidColorBrush x:Key="SelectionBackgroundLightBrush" Color="White" Opacity=".08" />

@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converters="clr-namespace:Nostrum.Converters">
+                    xmlns:converters="clr-namespace:Nostrum.WPF.Converters">
     <converters:BoolToVisibility x:Key="BoolToVisibility"/>
     <converters:BooleanInverter x:Key="BoolInverter"/>
     <converters:RoundedClipConverter x:Key="RoundedClipConverter" />
