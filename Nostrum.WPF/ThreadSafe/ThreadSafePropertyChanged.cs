@@ -40,6 +40,7 @@ namespace Nostrum.WPF.ThreadSafe
         /// Fires the <see cref="PropertyChanged"/> event.
         /// </summary>
         /// <param name="propertyName">the name of the changed property</param>
+        /// <param name="delayMs">delay to wait beofore the <see cref="PropertyChanged"/> event is fired</param>
         protected void N([CallerMemberName] string? propertyName = null, int delayMs = 0)
         {
             if (delayMs > 0)
@@ -47,27 +48,30 @@ namespace Nostrum.WPF.ThreadSafe
                 Task.Factory.StartNew(async () =>
                 {
                     await Task.Delay(delayMs);
-                    if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
-                    _dispatcher!.InvokeAsyncIfRequired(() =>
-                            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)),
-                        DispatcherPriority.DataBind);
+                    InvokePropertyChanged(propertyName);
                 });
             }
             else
             {
-                if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
-                _dispatcher!.InvokeAsyncIfRequired(() =>
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)), DispatcherPriority.DataBind);
+                InvokePropertyChanged(propertyName);
             }
+        }
+
+        private void InvokePropertyChanged(string? propertyName)
+        {
+            if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
+            _dispatcher!.InvokeAsyncIfRequired(() =>
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)), DispatcherPriority.DataBind);
         }
 
         /// <summary>
         /// Calls the <see cref="N"/> method externally.
         /// </summary>
         /// <param name="propertyName"></param>
-        public void ExN([CallerMemberName] string? propertyName = null)
+        /// <param name="delayMs"></param>
+        public void ExN([CallerMemberName] string? propertyName = null, int delayMs = 0)
         {
-            N(propertyName);
+            N(propertyName, delayMs);
         }
     }
 }
