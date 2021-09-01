@@ -19,20 +19,12 @@
     <RootNamespace>Nostrum</RootNamespace>
     <TargetFrameworks>net5</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <!--<UseWPF>true</UseWPF>-->
-    <!--<UseWindowsForms>true</UseWindowsForms>-->
   </PropertyGroup>
   <PropertyGroup>
     <Authors>$(Company)</Authors>
     <IsPublishable>false</IsPublishable>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
-  <!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
-    <DocumentationFile>D:\Repos\Nostrum\Nostrum\Nostrum.xml</DocumentationFile>
-  </PropertyGroup>-->
- <!--<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
-    <Reference Include="PresentationFramework.Aero" />
-  </ItemGroup>-->
   <ItemGroup>
     <None Include="..\LICENSE.md">
       <Pack>true</Pack>
