@@ -43,6 +43,8 @@ namespace Nostrum.WPF.ThreadSafe
         /// <param name="delayMs">delay to wait beofore the <see cref="PropertyChanged"/> event is fired</param>
         protected void N([CallerMemberName] string? propertyName = null, int delayMs = 0)
         {
+            if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
+
             if (delayMs > 0)
             {
                 Task.Factory.StartNew(async () =>
@@ -59,7 +61,6 @@ namespace Nostrum.WPF.ThreadSafe
 
         private void InvokePropertyChanged(string? propertyName)
         {
-            if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
             _dispatcher!.InvokeAsyncIfRequired(() =>
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)), DispatcherPriority.DataBind);
         }
