@@ -55,7 +55,7 @@ namespace Nostrum.WPF
         /// </summary>
         /// <param name="execute">the delegate to call when executing the command</param>
         /// <param name="canExecute">the delegate to call when checking if the command can be executed</param>
-        public RelayCommand(Action execute, Func<object?, bool>? canExecute = null) 
+        public RelayCommand(Action execute, Func<object?, bool>? canExecute = null)
         {
             _execute = _ => execute();
             _canExecute = canExecute;
@@ -64,20 +64,19 @@ namespace Nostrum.WPF
     /// <summary>
     /// A RelayCommand which allows you to specify command parameter type.
     /// </summary>
-    public class RelayCommand<ParameterType> : RelayCommand 
+    public class RelayCommand<TParameter> : RelayCommand
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="execute">the delegate to call when executing the command</param>
         /// <param name="canExecute">the delegate to call when checking if the command can be executed</param>
-        public RelayCommand(Action<ParameterType?> execute, Func<object?, bool>? canExecute = null) 
+        public RelayCommand(Action<TParameter?> execute, Func<object?, bool>? canExecute = null)
             : base(o =>
             {
-                if (o is ParameterType p)
-                    execute(p);
-                else 
-                    execute(default);
-            }, canExecute) { }
+                if (o is TParameter p) execute(p);
+                else execute(default);
+            }, canExecute)
+        { }
     }
 }

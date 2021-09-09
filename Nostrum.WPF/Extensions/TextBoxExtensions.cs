@@ -13,7 +13,7 @@ namespace Nostrum.WPF.Extensions
             new PropertyMetadata(Brushes.DodgerBlue));
         public static Brush GetFocusBorderBrush(DependencyObject obj)
         {
-            return (Brush) obj.GetValue(FocusBorderBrushProperty);
+            return (Brush)obj.GetValue(FocusBorderBrushProperty);
         }
 
         public static void SetFocusBorderBrush(DependencyObject obj, Brush value)

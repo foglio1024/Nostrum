@@ -2,7 +2,7 @@
 
 namespace Nostrum.WPF.ThreadSafe
 {
-    //// TODO: remove
+    // TODO: remove
     [Obsolete("Use " + nameof(ThreadSafeObservableObject) + " instead.")]
     public class ThreadSafePropertyChanged : ThreadSafeObservableObject { }
 }

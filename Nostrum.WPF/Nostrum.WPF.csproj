@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
-    <Version>1.2.4</Version>
+    <Version>1.2.5</Version>
   </PropertyGroup>
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -36,5 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Nostrum" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EditorConfigFiles Remove="\.editorconfig" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@ using System.Windows.Media;
 namespace Nostrum.WPF.Converters
 {
     /// <summary>
-    /// Returns a brighter shade of the input color using <see cref="Color.Multiply"/> and preserving the alpha value.
+    /// Returns a brighter shade of the input color using <see cref="Color.Multiply"/> and preserving the alpha value. Can be used as a <see cref="MarkupExtension"/>.
     /// </summary>
     public class ColorBrightnessConverter : MarkupExtension, IValueConverter
     {

@@ -21,8 +21,8 @@ namespace Nostrum.WPF.Factories
         /// Optional <paramref name="predicate"/> and a <paramref name="sortDescr"/> can be passed in to filter and sort the list.
         /// </para>
         /// </summary>
-        public static ICollectionView CreateCollectionView<T>(IEnumerable<T> source, 
-                                                              Predicate<T>? predicate = null, 
+        public static ICollectionView CreateCollectionView<T>(IEnumerable<T> source,
+                                                              Predicate<T>? predicate = null,
                                                               IEnumerable<SortDescription>? sortDescr = null)
         {
             var view = new CollectionViewSource { Source = source }.View;
@@ -47,9 +47,9 @@ namespace Nostrum.WPF.Factories
         /// Optional <paramref name="predicate"/>, <paramref name="filters"/> and <paramref name="sortFilters"/> can be passed in to filter and sort the list.
         /// </para>
         /// </summary>
-        public static ICollectionViewLiveShaping? CreateLiveCollectionView<T>(IEnumerable<T> source, 
-                                                                             Predicate<T>? predicate = null, 
-                                                                             string[]? filters = null, 
+        public static ICollectionViewLiveShaping? CreateLiveCollectionView<T>(IEnumerable<T> source,
+                                                                             Predicate<T>? predicate = null,
+                                                                             string[]? filters = null,
                                                                              SortDescription[]? sortFilters = null)
         {
             var cv = new CollectionViewSource { Source = source }.View;

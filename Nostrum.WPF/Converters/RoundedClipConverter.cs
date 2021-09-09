@@ -2,15 +2,18 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace Nostrum.WPF.Converters
 {
     /// <summary>
-    /// Returns a rounded rectangle to use as clip geometry. Inputs values are width, height, radius.
+    /// Returns a rounded rectangle to use as clip geometry. Inputs values are width, height, radius. Can be used as a <see cref="MarkupExtension"/>. 
     /// </summary>
-    public class RoundedClipConverter : IMultiValueConverter
+    public class RoundedClipConverter : MarkupExtension, IMultiValueConverter
     {
+        private static RoundedClipConverter? _instance;
+
         /// <inheritdoc />
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -31,6 +34,11 @@ namespace Nostrum.WPF.Converters
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return _instance ??= new RoundedClipConverter();
         }
     }
 }

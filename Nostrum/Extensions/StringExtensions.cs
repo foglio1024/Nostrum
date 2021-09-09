@@ -47,7 +47,7 @@ namespace Nostrum.Extensions
             str = str.Replace("&amp;", "&");
             return str;
         }
-        
+
         /// <summary>
         /// Escape the most common HTML syntax symbols with their escape sequence.
         /// </summary>

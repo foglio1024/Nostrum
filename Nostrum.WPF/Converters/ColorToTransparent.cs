@@ -8,7 +8,7 @@ namespace Nostrum.WPF.Converters
 {
     /// <summary>
     /// <para>
-    ///     Sets the Alpha channel of the input <see cref="Color"/> or <see cref="SolidColorBrush"/> to the given <see cref="Opacity"/>.
+    ///     Sets the Alpha channel of the input <see cref="Color"/> or <see cref="SolidColorBrush"/> to the given <see cref="Opacity"/>. Can be used as a <see cref="MarkupExtension"/>.
     /// </para>
     /// </summary>
     public class ColorToTransparent : MarkupExtension, IValueConverter

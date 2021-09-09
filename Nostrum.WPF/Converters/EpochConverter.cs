@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace Nostrum.WPF.Converters
 {
     /// <summary>
-    /// Converts a Unix time value to a <see cref="DateTime"/>.
+    /// Converts a Unix time value to a <see cref="DateTime"/>. Can be used as a <see cref="MarkupExtension"/>.
     /// </summary>
-    public class EpochConverter : IValueConverter
+    public class EpochConverter : MarkupExtension, IValueConverter
     {
+        private static EpochConverter? _instance;
         /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -20,6 +22,11 @@ namespace Nostrum.WPF.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return _instance ??= new EpochConverter();
         }
     }
 }

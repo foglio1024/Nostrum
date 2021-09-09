@@ -6,7 +6,7 @@ using System.Windows.Markup;
 namespace Nostrum.WPF.Converters
 {
     /// <summary>
-    /// Converts a 0-1 value to a 0-360 angle. The result can be scaled by using the <see cref="Multiplier"/> property.
+    /// Converts a 0-1 value to a 0-360 angle. The result can be scaled by using the <see cref="Multiplier"/> property. Can be used as a <see cref="MarkupExtension"/>.
     /// </summary>
     public class FactorToAngleConverter : MarkupExtension, IValueConverter
     {

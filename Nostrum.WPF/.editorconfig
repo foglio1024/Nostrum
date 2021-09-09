@@ -1,0 +1,14 @@
+# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+root = true
+
+# All files
+[*]
+indent_style = space
+
+# Xml files
+
+# IDE0011: Add braces
+csharp_prefer_braces = when_multiline
+
+[*.xml]
+indent_size = 2
