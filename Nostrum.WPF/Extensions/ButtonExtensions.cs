@@ -197,20 +197,47 @@ namespace Nostrum.WPF.Extensions
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="RippleDurationProperty"/> value</returns>
-
         public static Effect GetBorderEffect(DependencyObject obj)
         {
             return (Effect)obj.GetValue(BorderEffectProperty);
         }
+
         /// <summary>
         /// Sets the <see cref="BorderEffectProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
-
         public static void SetBorderEffect(DependencyObject obj, Effect value)
         {
             obj.SetValue(BorderEffectProperty, value);
+        }
+
+        // DimsOnDisabled
+        /// <summary>
+        /// Specifies if the content should be dimmed when the button is disabled.
+        /// </summary>
+        public static readonly DependencyProperty DimsOnDisabledProperty = DependencyProperty.RegisterAttached("DimsOnDisabled",
+                                                                                                               typeof(bool),
+                                                                                                               typeof(ButtonExtensions),
+                                                                                                               new PropertyMetadata(true));
+        /// <summary>
+        /// Gets the <see cref="DimsOnDisabledProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// </summary>
+        /// <param name="obj">the dependency object</param>
+        /// <returns>the <see cref="DimsOnDisabledProperty"/> value</returns>
+        public static bool GetDimsOnDisabled(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(DimsOnDisabledProperty);
+        }
+
+        /// <summary>
+        /// Sets the <see cref="DimsOnDisabledProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// </summary>
+        /// <param name="obj">the dependency object</param>
+        /// <param name="value">the new property value</param>
+        public static void SetDimsOnDisabled(DependencyObject obj, bool value)
+        {
+            obj.SetValue(DimsOnDisabledProperty, value);
         }
     }
 }
