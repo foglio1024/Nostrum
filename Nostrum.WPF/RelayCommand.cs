@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Nostrum.WPF
@@ -8,7 +9,7 @@ namespace Nostrum.WPF
     /// </summary>
     public class RelayCommand : ICommand
     {
-        private readonly Action<object?> _execute;
+        private readonly Delegate _execute;
         private readonly Func<object?, bool>? _canExecute;
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace Nostrum.WPF
         /// <param name="parameter"></param>
         public virtual void Execute(object? parameter)
         {
-            _execute(parameter);
+            _execute.DynamicInvoke(parameter);
         }
 
         /// <summary>
@@ -51,16 +52,39 @@ namespace Nostrum.WPF
         }
 
         /// <summary>
+        /// Constructor in which the <see cref="Execute"/> method parameter is specified and the method returns a <see cref="Task"/>.
+        /// </summary>
+        /// <param name="execute">the delegate to call when executing the command</param>
+        /// <param name="canExecute">the delegate to call when checking if the command can be executed</param>
+        public RelayCommand(Func<object?, Task> execute, Func<object?, bool>? canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        /// <summary>
         /// Constructor in which the <see cref="Execute"/> is called with no parameters.
         /// </summary>
         /// <param name="execute">the delegate to call when executing the command</param>
         /// <param name="canExecute">the delegate to call when checking if the command can be executed</param>
         public RelayCommand(Action execute, Func<object?, bool>? canExecute = null)
         {
-            _execute = _ => execute();
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        /// <summary>
+        /// Constructor in which the <see cref="Execute"/> is called asynchronously with no parameters and returns a <see cref="Task"/>.
+        /// </summary>
+        /// <param name="execute"></param>
+        /// <param name="canExecute"></param>
+        public RelayCommand(Func<Task> execute, Func<object?, bool>? canExecute = null)
+        {
+            _execute = execute;
             _canExecute = canExecute;
         }
     }
+
     /// <summary>
     /// A RelayCommand which allows you to specify command parameter type.
     /// </summary>
