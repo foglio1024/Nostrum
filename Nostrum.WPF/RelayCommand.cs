@@ -28,7 +28,7 @@ namespace Nostrum.WPF
         /// <param name="parameter"></param>
         public virtual void Execute(object? parameter)
         {
-            _execute.DynamicInvoke(parameter);
+            _execute.DynamicInvoke(new[] { parameter });
         }
 
         /// <summary>
