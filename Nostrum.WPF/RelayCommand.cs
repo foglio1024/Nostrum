@@ -105,5 +105,19 @@ namespace Nostrum.WPF
                 else execute(default);
             }, canExecute)
         { }
+
+        /// <summary>
+        /// Constructor for async execute delegate.
+        /// </summary>
+        /// <param name="execute">the async delegate to call when executing the command</param>
+        /// <param name="canExecute">the delegate to call when checking if the command can be executed</param>
+        public RelayCommand(Func<TParameter?, Task> execute, Func<object?, bool>? canExecute = null)
+            : base(o =>
+            {
+                if (o is TParameter p) execute(p);
+                else execute(default);
+            }, canExecute)
+        { }
+
     }
 }
