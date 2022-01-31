@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Nostrum
@@ -15,12 +16,21 @@ namespace Nostrum
         /// Sets the <see cref="SecurityProtocolType"/> to <see cref="SecurityProtocolType.Tls12"/>, then creates a new <see cref="WebClient"/> and sets <see cref="HttpRequestHeader.UserAgent"/> to <see cref="DefaultUserAgent"/>
         /// </summary>
         /// <returns>the constructed <see cref="WebClient"/></returns>
+        [Obsolete("Use GetDefaultHttpClient() instead")]
         public static WebClient GetDefaultWebClient()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var wc = new WebClient();
             wc.Headers.Add(HttpRequestHeader.UserAgent, DefaultUserAgent);
             return wc;
+        }
+
+        public static HttpClient GetDefaultHttpClient()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add(HttpRequestHeader.UserAgent.ToString(), DefaultUserAgent);
+            return client;
         }
 
         /// <summary>
