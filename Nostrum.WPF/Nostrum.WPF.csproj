@@ -7,17 +7,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
-    <Version>1.2.10</Version>
+    <Version>1.2.12</Version>
   </PropertyGroup>
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>Nostrum.WPF</AssemblyName>
     <DebugType>portable</DebugType>
     <Deterministic>true</Deterministic>
-    <LangVersion>9</LangVersion>
+    <LangVersion>10</LangVersion>
     <OutputType>Library</OutputType>
     <RootNamespace>Nostrum.WPF</RootNamespace>
-    <TargetFrameworks>net5-windows</TargetFrameworks>
+    <TargetFrameworks>net5-windows; net6-windows</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
@@ -35,9 +35,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Nostrum" Version="2.0.0" />
+    <EditorConfigFiles Remove="\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
-    <EditorConfigFiles Remove="\.editorconfig" />
+    <ProjectReference Include="..\Nostrum\Nostrum.csproj" />
   </ItemGroup>
 </Project>

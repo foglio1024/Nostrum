@@ -7,17 +7,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
   </PropertyGroup>
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>Nostrum</AssemblyName>
     <DebugType>portable</DebugType>
     <Deterministic>true</Deterministic>
-    <LangVersion>9</LangVersion>
+    <LangVersion>10</LangVersion>
     <OutputType>Library</OutputType>
     <RootNamespace>Nostrum</RootNamespace>
-    <TargetFrameworks>net5</TargetFrameworks>
+    <TargetFrameworks>net5;net6</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
