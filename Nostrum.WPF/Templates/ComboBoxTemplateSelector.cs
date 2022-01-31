@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace Nostrum.WPF.Controls
+namespace Nostrum.WPF.Templates
 {
 	public class ComboBoxTemplateSelector : DataTemplateSelector
 	{
