@@ -58,7 +58,7 @@ namespace Nostrum.WinAPI
         /// <param name="lpModuleName">pointer to a null-terminated string that contains the name of the module, which must be a DLL file.</param>
         /// <returns>a handle to the specified module indicates success. NULL indicates failure.</returns>
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr GetModuleHandle(string lpModuleName);
+        public static extern IntPtr GetModuleHandle(string lpModuleName);
 
         [Flags]
         public enum ProcessAccessFlags : uint
