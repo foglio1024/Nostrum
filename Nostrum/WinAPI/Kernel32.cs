@@ -52,6 +52,14 @@ namespace Nostrum.WinAPI
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr OpenProcess(ProcessAccessFlags processAccess, bool bInheritHandle, int processId);
 
+        /// <summary>
+        /// This function returns a module handle for the specified module if the file is mapped into the address space of the calling process.
+        /// </summary>
+        /// <param name="lpModuleName">pointer to a null-terminated string that contains the name of the module, which must be a DLL file.</param>
+        /// <returns>a handle to the specified module indicates success. NULL indicates failure.</returns>
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetModuleHandle(string lpModuleName);
+
         [Flags]
         public enum ProcessAccessFlags : uint
         {
