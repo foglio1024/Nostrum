@@ -25,6 +25,7 @@ namespace Nostrum.WPF.Converters
 
             // Actually we need more complex geometry, when CornerRadius has different values.
             // But let me not to take this into account, and simplify example for a common value.
+            // see https://github.com/dotnet/wpf/blob/main/src/Microsoft.DotNet.Wpf/src/PresentationFramework/System/Windows/Controls/Border.cs
             var clip = new RectangleGeometry(new Rect(0, 0, width, height), radius.TopLeft, radius.TopLeft);
             clip.Freeze();
             return clip;
