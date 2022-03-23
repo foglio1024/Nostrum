@@ -506,6 +506,7 @@
     <Style TargetType="{x:Type CheckBox}" x:Key="{x:Type CheckBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource EmptyFocusVisual}" />
         <Setter Property="extensions:CheckBoxExtensions.Size" Value="16"/>
+        <Setter Property="extensions:CheckBoxExtensions.BaseBrush" Value="SlateGray"/>
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="SlateGray" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
@@ -534,6 +535,7 @@
                                       Stretch="Uniform"
                                       Width="{TemplateBinding extensions:CheckBoxExtensions.Size}"
                                       Height="{TemplateBinding extensions:CheckBoxExtensions.Size}"
+                                      Fill="{TemplateBinding extensions:CheckBoxExtensions.BaseBrush}"
                                       Margin="0"/>
                                 <Path x:Name="optionMark"
                                       Width="{TemplateBinding extensions:CheckBoxExtensions.Size}"
