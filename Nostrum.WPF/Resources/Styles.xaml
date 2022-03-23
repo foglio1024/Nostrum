@@ -487,7 +487,7 @@
     </Style>
     <!--#endregion-->
 
-    <Style TargetType="{x:Type Path}">
+    <Style x:Key="DefaultPathStyle" TargetType="{x:Type Path}">
         <Setter Property="Fill" Value="#9fff" />
         <Setter Property="Stretch" Value="Uniform" />
     </Style>
@@ -523,18 +523,14 @@
                                       Stretch="Uniform"
                                       Width="{TemplateBinding extensions:CheckBoxExtensions.Size}"
                                       Height="{TemplateBinding extensions:CheckBoxExtensions.Size}"
-
-
                                       Margin="0"/>
                                 <Path x:Name="optionMark"
                                       Width="{TemplateBinding extensions:CheckBoxExtensions.Size}"
                                       Height="{TemplateBinding extensions:CheckBoxExtensions.Size}"
-
                                       Data="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"
                                       Fill="{TemplateBinding BorderBrush}" Margin="0" Opacity="0"
                                       Stretch="Uniform" />
                                 <Rectangle x:Name="indeterminateMark"
-
                                            Fill="Black" Margin="2" Opacity="0" />
                             </Grid>
                         </Border>
@@ -601,7 +597,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type ListBox}">
+    <Style TargetType="{x:Type ListBox}" x:Key="DefaultListBoxStyle">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
     </Style>
