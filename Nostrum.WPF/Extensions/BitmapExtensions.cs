@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Nostrum.WinAPI;
+using Color = System.Drawing.Color;
 
 namespace Nostrum.WPF.Extensions
 {
@@ -19,12 +20,12 @@ namespace Nostrum.WPF.Extensions
         /// <summary>
         /// Initializes and creates a <see cref="BitmapImage"/> from the <see cref="Bitmap"/>.
         /// </summary>
-        /// <param name="bitmap"></param>
+        /// <param name="bmp"></param>
         /// <returns></returns>
-        public static BitmapImage ToBitmapImage(this Bitmap bitmap)
+        public static BitmapImage ToBitmapImage(this Bitmap bmp)
         {
             using var ms = new MemoryStream();
-            bitmap.Save(ms, ImageFormat.Bmp);
+            bmp.Save(ms, ImageFormat.Bmp);
             ms.Position = 0;
             var bitmapimage = new BitmapImage();
             bitmapimage.BeginInit();
@@ -65,5 +66,20 @@ namespace Nostrum.WPF.Extensions
             return values;
         }
 
+        /// <summary>
+        /// Gets the pixel values as an array of <see cref="Color"/>s. The input <see cref="Bitmap"/> must be in the ARGB format.
+        /// </summary>
+        /// <param name="bmp"></param>
+        /// <returns></returns>
+        public static Color[] GetRgbValues(this Bitmap bmp)
+        {
+            var bytes = bmp.GetBytes();
+            var ret = new Color[bytes.Length / 4];
+            for (int i = 0; i < ret.Length; i += 4)
+            {
+                ret[i] = Color.FromArgb(bytes[i * 4], bytes[i * 4 + 1], bytes[i * 4 + 2], bytes[i * 4 + 3]);
+            }
+            return ret;
+        }
     }
 }

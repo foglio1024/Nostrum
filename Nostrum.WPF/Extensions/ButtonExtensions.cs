@@ -21,21 +21,21 @@ namespace Nostrum.WPF.Extensions
                                                                                                              new PropertyMetadata(new CornerRadius(0)));
 
         /// <summary>
-        /// Gets the <see cref="CornerRadiusProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="CornerRadiusProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="CornerRadius"/></returns>
-        public static CornerRadius GetCornerRadius(DependencyObject obj)
+        public static CornerRadius GetCornerRadius(Button obj)
         {
             return (CornerRadius)obj.GetValue(CornerRadiusProperty);
         }
 
         /// <summary>
-        /// Sets the <see cref="CornerRadiusProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Sets the <see cref="CornerRadiusProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
-        public static void SetCornerRadius(DependencyObject obj, CornerRadius value)
+        public static void SetCornerRadius(Button obj, CornerRadius value)
         {
             obj.SetValue(CornerRadiusProperty, value);
         }
@@ -49,21 +49,21 @@ namespace Nostrum.WPF.Extensions
                                                                                                             typeof(ButtonExtensions),
                                                                                                             new PropertyMetadata(Brushes.White));
         /// <summary>
-        /// Gets the <see cref="RippleBrushProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="RippleBrushProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="RippleBrushProperty"/> value</returns>
-        public static Brush GetRippleBrush(DependencyObject obj)
+        public static Brush GetRippleBrush(Button obj)
         {
             return (Brush)obj.GetValue(RippleBrushProperty);
         }
 
         /// <summary>
-        /// Sets the <see cref="RippleBrushProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Sets the <see cref="RippleBrushProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
-        public static void SetRippleBrush(DependencyObject obj, Brush value)
+        public static void SetRippleBrush(Button obj, Brush value)
         {
             obj.SetValue(RippleBrushProperty, value);
         }
@@ -78,21 +78,21 @@ namespace Nostrum.WPF.Extensions
                                                                                                             new PropertyMetadata(650));
 
         /// <summary>
-        /// Gets the <see cref="RippleDurationProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="RippleDurationProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="RippleDurationProperty"/> value</returns>
-        public static int GetRippleDuration(DependencyObject obj)
+        public static int GetRippleDuration(Button obj)
         {
             return (int)obj.GetValue(RippleDurationProperty);
         }
 
         /// <summary>
-        /// Sets the <see cref="RippleDurationProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Sets the <see cref="RippleDurationProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
-        public static void SetRippleDuration(DependencyObject obj, int value)
+        public static void SetRippleDuration(Button obj, int value)
         {
             obj.SetValue(RippleDurationProperty, value);
         }
@@ -107,21 +107,21 @@ namespace Nostrum.WPF.Extensions
                                                                                                             new PropertyMetadata(false));
 
         /// <summary>
-        /// Gets the <see cref="RippleStaysVisibleProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="RippleStaysVisibleProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="RippleDurationProperty"/> value</returns>
-        public static bool GetRippleStaysVisible(DependencyObject obj)
+        public static bool GetRippleStaysVisible(Button obj)
         {
             return (bool)obj.GetValue(RippleStaysVisibleProperty);
         }
 
         /// <summary>
-        /// Sets the <see cref="RippleStaysVisibleProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Sets the <see cref="RippleStaysVisibleProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
-        public static void SetRippleStaysVisible(DependencyObject obj, bool value)
+        public static void SetRippleStaysVisible(Button obj, bool value)
         {
             obj.SetValue(RippleStaysVisibleProperty, value);
         }
@@ -136,21 +136,21 @@ namespace Nostrum.WPF.Extensions
                                                                                                             new PropertyMetadata(false));
 
         /// <summary>
-        /// Gets the <see cref="RippleReversedProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="RippleReversedProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="RippleDurationProperty"/> value</returns>
-        public static bool GetRippleReversed(DependencyObject obj)
+        public static bool GetRippleReversed(Button obj)
         {
             return (bool)obj.GetValue(RippleReversedProperty);
         }
 
         /// <summary>
-        /// Sets the <see cref="RippleReversedProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Sets the <see cref="RippleReversedProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
-        public static void SetRippleReversed(DependencyObject obj, bool value)
+        public static void SetRippleReversed(Button obj, bool value)
         {
             obj.SetValue(RippleReversedProperty, value);
         }
@@ -164,22 +164,22 @@ namespace Nostrum.WPF.Extensions
                                                                                                             typeof(ButtonExtensions),
                                                                                                             new PropertyMetadata(true));
         /// <summary>
-        /// Gets the <see cref="RippleEnabledProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="RippleEnabledProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="RippleDurationProperty"/> value</returns>
 
-        public static bool GetRippleEnabled(DependencyObject obj)
+        public static bool GetRippleEnabled(Button obj)
         {
             return (bool)obj.GetValue(RippleEnabledProperty);
         }
         /// <summary>
-        /// Sets the <see cref="RippleEnabledProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Sets the <see cref="RippleEnabledProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
 
-        public static void SetRippleEnabled(DependencyObject obj, bool value)
+        public static void SetRippleEnabled(Button obj, bool value)
         {
             obj.SetValue(RippleEnabledProperty, value);
         }
@@ -193,21 +193,21 @@ namespace Nostrum.WPF.Extensions
                                                                                                             typeof(ButtonExtensions),
                                                                                                             new PropertyMetadata(null));
         /// <summary>
-        /// Gets the <see cref="BorderEffectProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="BorderEffectProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="RippleDurationProperty"/> value</returns>
-        public static Effect GetBorderEffect(DependencyObject obj)
+        public static Effect GetBorderEffect(Button obj)
         {
             return (Effect)obj.GetValue(BorderEffectProperty);
         }
 
-        /// <summary>
-        /// Sets the <see cref="BorderEffectProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        ///<summary>
+        /// Sets the <see cref="BorderEffectProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
-        /// <param name="value">the new property value</param>
-        public static void SetBorderEffect(DependencyObject obj, Effect value)
+        /// <param name = "value" > the new property value</param>
+        public static void SetBorderEffect(Button obj, Effect value)
         {
             obj.SetValue(BorderEffectProperty, value);
         }
@@ -221,23 +221,53 @@ namespace Nostrum.WPF.Extensions
                                                                                                                typeof(ButtonExtensions),
                                                                                                                new PropertyMetadata(true));
         /// <summary>
-        /// Gets the <see cref="DimsOnDisabledProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Gets the <see cref="DimsOnDisabledProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <returns>the <see cref="DimsOnDisabledProperty"/> value</returns>
-        public static bool GetDimsOnDisabled(DependencyObject obj)
+        public static bool GetDimsOnDisabled(Button obj)
         {
             return (bool)obj.GetValue(DimsOnDisabledProperty);
         }
 
         /// <summary>
-        /// Sets the <see cref="DimsOnDisabledProperty"/> dependency property value of the given <see cref="DependencyObject"/>.
+        /// Sets the <see cref="DimsOnDisabledProperty"/> dependency property value of the given <see cref="Button"/>.
         /// </summary>
         /// <param name="obj">the dependency object</param>
         /// <param name="value">the new property value</param>
-        public static void SetDimsOnDisabled(DependencyObject obj, bool value)
+        public static void SetDimsOnDisabled(Button obj, bool value)
         {
             obj.SetValue(DimsOnDisabledProperty, value);
         }
+
+        // HighlightBrush
+        /// <summary>
+        /// The brush displayed when hovering the button.
+        /// </summary>
+        public static readonly DependencyProperty HighlightBrushProperty = DependencyProperty.RegisterAttached("HighlightBrush",
+                                                                                                               typeof(Brush),
+                                                                                                               typeof(ButtonExtensions),
+                                                                                                               new PropertyMetadata(new SolidColorBrush(Colors.White) { Opacity = .2 }));
+
+        /// <summary>
+        /// Gets the <see cref="HighlightBrushProperty"/> dependency property value of the given <see cref="Button"/>.
+        /// </summary>
+        /// <param name="obj">the dependency object</param>
+        /// <returns>the <see cref="DimsOnDisabledProperty"/> value</returns>
+        public static Brush GetHighlightBrush(Button obj)
+        {
+            return (Brush)obj.GetValue(HighlightBrushProperty);
+        }
+
+        /// <summary>
+        /// Sets the <see cref="HighlightBrushProperty"/> dependency property value of the given <see cref="Button"/>.
+        /// </summary>
+        /// <param name="obj">the dependency object</param>
+        /// <param name="value">the new property value</param>
+        public static void SetHighlightBrush(Button obj, Brush value)
+        {
+            obj.SetValue(HighlightBrushProperty, value);
+        }
+
     }
 }
