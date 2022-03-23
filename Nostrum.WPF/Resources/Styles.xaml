@@ -65,7 +65,8 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="hl" Property="Background" Value="{TemplateBinding extensions:ButtonExtensions.HighlightBrush}" />
+                            <!--Binding instead of TemplateBinding (which not supported in a Setter)-->
+                            <Setter TargetName="hl" Property="Background" Value="{Binding Path=(extensions:ButtonExtensions.HighlightBrush), RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
