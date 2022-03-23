@@ -24,6 +24,7 @@
     <!--#region Button-->
     <Style TargetType="{x:Type Button}" x:Key="ButtonMainStyle">
         <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="extensions:ButtonExtensions.HighlightBrush" Value="{StaticResource SelectionBorderBrush}"/>
         <Setter Property="Margin" Value="0" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Cursor" Value="Hand" />
@@ -64,7 +65,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="hl" Property="Background" Value="{StaticResource SelectionBackgroundBrush}" />
+                            <Setter TargetName="hl" Property="Background" Value="{TemplateBinding extensions:ButtonExtensions.HighlightBrush}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -477,6 +478,15 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}" />
+        <Setter Property="extensions:ComboBoxExtensions.DropDownBorderStyle">
+            <Setter.Value>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="#222"/>
+                    <Setter Property="BorderBrush" Value="#444"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false" />
