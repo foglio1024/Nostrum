@@ -22,7 +22,7 @@
     </Style>
 
     <!--#region Button-->
-    <Style TargetType="{x:Type Button}" x:Key="ButtonMainStyle">
+    <Style TargetType="{x:Type Button}" x:Key="NostrumMainButtonStyle">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="extensions:ButtonExtensions.HighlightBrush" Value="{StaticResource SelectionBorderBrush}"/>
         <Setter Property="Margin" Value="0" />
@@ -93,7 +93,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type Button}" x:Key="ButtonContentOpacityStyle">
+    <Style TargetType="{x:Type Button}" x:Key="NostrumContentOpacityButtonStyle">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Foreground" Value="White" />
@@ -498,7 +498,7 @@
     </Style>
     <!--#endregion-->
 
-    <Style x:Key="DefaultPathStyle" TargetType="{x:Type Path}">
+    <Style x:Key="NostrumDefaultPathStyle" TargetType="{x:Type Path}">
         <Setter Property="Fill" Value="#9fff" />
         <Setter Property="Stretch" Value="Uniform" />
     </Style>
@@ -973,4 +973,151 @@
 
     <!--#endregion-->
 
+    <!--#region Slider-->
+    <Style x:Key="SliderThumbStyle" TargetType="Thumb">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="false"/>
+        <Setter Property="Height" Value="10"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Grid>
+                        <Ellipse Name="ExternalEllipse" 
+                                 Opacity="0" 
+                                 Fill="{TemplateBinding Foreground}" 
+                                 Margin="-5" />
+                        <Ellipse Name="Ellipse" 
+                                 Cursor="Hand"
+                                 Fill="{TemplateBinding Foreground}"  >
+                            <Ellipse.Effect>
+                                <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity=".5" />
+                            </Ellipse.Effect>
+                        </Ellipse>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ExternalEllipse"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To=".3" Duration="0:0:0.2"
+                                                         EasingFunction="{StaticResource QuadraticEase}"
+                                                         />
+                                        <!--<ColorAnimation Storyboard.TargetName="Ellipse"
+                                                 Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)"
+                                                 To="LightBlue"
+                                                 Duration="0:0:0.2" EasingFunction="{StaticResource QuadraticEase}"/>-->
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ExternalEllipse"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" Duration="0:0:0.2"
+                                                         EasingFunction="{StaticResource QuadraticEase}"
+                                                         />
+                                        <!--<ColorAnimation Storyboard.TargetName="Ellipse"
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)"
+                                                            To="DodgerBlue"
+                                                            Duration="0:0:0.2" EasingFunction="{StaticResource QuadraticEase}"/>-->
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="SlateGray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="LeftSliderRepeatButton" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border x:Name="bg"
+                            BorderBrush="Black" 
+                            Background="{TemplateBinding Foreground}"
+                            Opacity=".7"
+                            Height="4" 
+                            Margin="0 0 -5 0"
+                            BorderThickness="0" 
+                            CornerRadius="2 0 0 2"
+                            />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bg" Property="Background" Value="SlateGray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="RightSliderRepeatButton" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border SnapsToDevicePixels="True" 
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0" 
+                            Margin="-5 0 0 0"
+                            CornerRadius="0 2 2 0" 
+                            Height="4"
+                            />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Slider" x:Key="NostrumDefaultSliderStyle">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Background" Value="DarkSlateGray"/>
+        <Setter Property="Foreground" Value="SlateGray"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" Name="row" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" Name="column" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Track Name="PART_Track"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Center"
+                               Grid.Row="1" Grid.Column="1"
+                               Width="{TemplateBinding Width}"
+                               Height="{TemplateBinding Height}">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource LeftSliderRepeatButton}"  Command="Slider.DecreaseLarge" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource RightSliderRepeatButton}" Command="Slider.IncreaseLarge" Background="{TemplateBinding Background}"/>
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource SliderThumbStyle}" Foreground="{TemplateBinding Foreground}" />
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
 </ResourceDictionary>
