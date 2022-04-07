@@ -36,5 +36,33 @@ namespace Nostrum.WPF.Extensions
         {
             obj.SetValue(DropDownBorderStyleProperty, value);
         }
+
+        //IconTemplate
+        /// <summary>
+        /// Specifies the icon template of items.
+        /// </summary>
+        public static readonly DependencyProperty IconTemplateProperty = DependencyProperty.RegisterAttached("IconTemplate",
+            typeof(ControlTemplate),
+            typeof(ComboBoxExtensions));
+
+        /// <summary>
+        /// Gets the <see cref="IconTemplateProperty"/> dependency property value of the given <see cref="ComboBox"/>.
+        /// </summary>
+        /// <param name="obj">the ComboBox</param>
+        /// <returns>the <see cref="ControlTemplate"/></returns>
+        public static ControlTemplate GetIconTemplate(ComboBox obj)
+        {
+            return (ControlTemplate)obj.GetValue(IconTemplateProperty);
+        }
+
+        /// <summary>
+        /// Sets the <see cref="IconTemplateProperty"/> dependency property value of the given <see cref="ComboBox"/>.
+        /// </summary>
+        /// <param name="obj">the ComboBox</param>
+        /// <param name="value">the new property value</param>
+        public static void SetIconTemplate(ComboBox obj, ControlTemplate value)
+        {
+            obj.SetValue(IconTemplateProperty, value);
+        }
     }
 }
