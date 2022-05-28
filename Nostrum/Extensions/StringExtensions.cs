@@ -129,11 +129,11 @@ namespace Nostrum.Extensions
         /// <summary>
         /// Checks if this string starts with any of the specified strings.
         /// </summary>
-        /// <param name="options">options for comparison configuration</param>
         /// <param name="tokens">the tokens to be checked</param>
+        /// <param name="options">options for comparison configuration</param>
         /// <returns>true if input contains any of the tokens</returns>
         /// <exception cref="ArgumentException">if tokens is empty</exception>
-        public static bool StartsWithAny(this string input, StringComparison options = StringComparison.InvariantCultureIgnoreCase, params string[] tokens)
+        public static bool StartsWithAny(this string input, string[] tokens, StringComparison options = StringComparison.InvariantCultureIgnoreCase)
         {
             if (tokens.Length == 0)
             {
@@ -145,11 +145,11 @@ namespace Nostrum.Extensions
         /// <summary>
         /// Checks if this string ends with any of the specified strings.
         /// </summary>
-        /// <param name="options">options for comparison configuration</param>
         /// <param name="tokens">the tokens to be checked</param>
+        /// <param name="options">options for comparison configuration</param>
         /// <returns>true if input contains any of the tokens</returns>
         /// <exception cref="ArgumentException">if tokens is empty</exception>
-        public static bool EndsWithAny(this string input, StringComparison options, params string[] tokens)
+        public static bool EndsWithAny(this string input, string[] tokens, StringComparison options = StringComparison.InvariantCultureIgnoreCase)
         {
             if (tokens.Length == 0)
             {
