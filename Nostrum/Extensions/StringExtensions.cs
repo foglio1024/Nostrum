@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -68,7 +69,7 @@ namespace Nostrum.Extensions
         {
             var pos = input.IndexOf(search, StringComparison.InvariantCultureIgnoreCase);
             if (pos < 0) return input;
-            var result = input.Substring(0, pos) + replacement + input.Substring(pos + search.Length);
+            var result = input[..pos] + replacement + input[(pos + search.Length)..];
             return result;
         }
 
@@ -97,9 +98,9 @@ namespace Nostrum.Extensions
                 if (msg.IndexOf("<font", StringComparison.OrdinalIgnoreCase) > 0)
                 {
                     sb.Append("<font>");
-                    sb.Append(msg.Substring(0, msg.IndexOf("<font", StringComparison.OrdinalIgnoreCase)));
+                    sb.Append(msg[..msg.IndexOf("<font", StringComparison.OrdinalIgnoreCase)]);
                     sb.Append("</font>");
-                    sb.Append(msg.Substring(msg.IndexOf("<font", StringComparison.OrdinalIgnoreCase)));
+                    sb.Append(msg[msg.IndexOf("<font", StringComparison.OrdinalIgnoreCase)..]);
                 }
                 else
                 {
@@ -121,8 +122,40 @@ namespace Nostrum.Extensions
         public static string ToCapital(this string str)
         {
             var sb = new StringBuilder(str[0].ToString().ToUpper());
-            sb.Append(str.Substring(1).ToLower());
+            sb.Append(str[1..].ToLower());
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Checks if this string starts with any of the specified strings.
+        /// </summary>
+        /// <param name="options">options for comparison configuration</param>
+        /// <param name="tokens">the tokens to be checked</param>
+        /// <returns>true if input contains any of the tokens</returns>
+        /// <exception cref="ArgumentException">if tokens is empty</exception>
+        public static bool StartsWithAny(this string input, StringComparison options = StringComparison.InvariantCultureIgnoreCase, params string[] tokens)
+        {
+            if (tokens.Length == 0)
+            {
+                throw new ArgumentException($"{nameof(tokens)} cannot be empty");
+            }
+            return tokens.Any(x => input.StartsWith(x, options));
+        }
+
+        /// <summary>
+        /// Checks if this string ends with any of the specified strings.
+        /// </summary>
+        /// <param name="options">options for comparison configuration</param>
+        /// <param name="tokens">the tokens to be checked</param>
+        /// <returns>true if input contains any of the tokens</returns>
+        /// <exception cref="ArgumentException">if tokens is empty</exception>
+        public static bool EndsWithAny(this string input, StringComparison options, params string[] tokens)
+        {
+            if (tokens.Length == 0)
+            {
+                throw new ArgumentException($"{nameof(tokens)} cannot be empty");
+            }
+            return tokens.Any(x => input.EndsWith(x, options));
         }
     }
 }
