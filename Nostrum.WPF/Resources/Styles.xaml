@@ -3,7 +3,9 @@
                     xmlns:extensions="clr-namespace:Nostrum.WPF.Extensions"
                     xmlns:controls="clr-namespace:Nostrum.WPF.Controls"
                     xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-                    xmlns:converters="clr-namespace:Nostrum.WPF.Converters">
+                    xmlns:converters="clr-namespace:Nostrum.WPF.Converters"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+                    >
 
     <SolidColorBrush x:Key="SelectionBackgroundBrush" Color="White" Opacity=".04" />
     <SolidColorBrush x:Key="SelectionBackgroundLightBrush" Color="White" Opacity=".08" />
@@ -1120,4 +1122,377 @@
         </Setter>
     </Style>
     <!--#endregion-->
+
+    <Style TargetType="{x:Type TextBox}" x:Key="NostrumTextBoxStyle">
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+        <Setter Property="Padding" Value="14" />
+        <Setter Property="BorderBrush" Value="#2000" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="CaretBrush" Value="Black" />
+        <Setter Property="SelectionBrush" Value="Orange" />
+        <Setter Property="extensions:TextBoxExtensions.FocusBorderBrush" Value="Orange" />
+        <Setter Property="extensions:TextBoxExtensions.FocusBackgroundBrush" Value="#2000" />
+        <Setter Property="extensions:TextBoxExtensions.HintTextBrush" Value="#2000" />
+        <Setter Property="extensions:TextBoxExtensions.ErrorBorderBrush" Value="#f55" />
+        <Setter Property="extensions:TextBoxExtensions.CornerRadius" Value="5" />
+        <Setter Property="extensions:TextBoxExtensions.FocusedCornerRadius" Value="5 5 5 5" />
+        <Setter Property="extensions:ControlExtensions.LabelMargin" Value="0 0 0 4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid ShowGridLines="False" VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="r1" Height="Auto" />
+                            <RowDefinition x:Name="r2" Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Border Name="MainBorder"
+                                Padding="{TemplateBinding Padding}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="1"
+                                Opacity="0.5"
+                                CornerRadius="{TemplateBinding extensions:TextBoxExtensions.CornerRadius}" />
+                        <Border Name="FocusBorder"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="1"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding extensions:TextBoxExtensions.FocusBackgroundBrush}"
+                                BorderThickness="2"
+                                BorderBrush="{TemplateBinding extensions:TextBoxExtensions.FocusBorderBrush}"
+                                RenderTransformOrigin="0 .5"
+                                Opacity="0"
+                                CornerRadius="{TemplateBinding extensions:TextBoxExtensions.FocusedCornerRadius}">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" />
+                            </Border.RenderTransform>
+                        </Border>
+                        <Border Name="ValidationBorder"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Padding="{TemplateBinding Padding}"
+                                BorderThickness="2"
+                                BorderBrush="{TemplateBinding extensions:TextBoxExtensions.ErrorBorderBrush}"
+                                Opacity="0">
+                            <Border.Background>
+                                <LinearGradientBrush />
+                            </Border.Background>
+                        </Border>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Grid.Row="1" />
+                        <TextBlock x:Name="HintText"
+                                   Grid.Row="1"
+                                   IsHitTestVisible="False"
+                                   VerticalAlignment="Center"
+                                   Visibility="Collapsed"
+                                   TextWrapping="{TemplateBinding TextWrapping}"
+                                   Padding="{TemplateBinding Padding}"
+                                   Text="{TemplateBinding extensions:TextBoxExtensions.HintText}"
+                                   Foreground="{TemplateBinding extensions:TextBoxExtensions.HintTextBrush}" />
+                        <TextBlock Foreground="{TemplateBinding extensions:TextBoxExtensions.ErrorBorderBrush}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text=" ! "
+                                   x:Name="ValidationLabel">
+                            <TextBlock.LayoutTransform>
+                                <ScaleTransform ScaleX="0" />
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                        <TextBlock Foreground="{TemplateBinding extensions:ControlExtensions.LabelForeground}"
+                                   Text="{TemplateBinding extensions:ControlExtensions.LabelText}"
+                                   FontSize="{TemplateBinding extensions:ControlExtensions.LabelFontSize}"
+                                   FontFamily="{TemplateBinding extensions:ControlExtensions.LabelFontFamily}"
+                                   Margin="{TemplateBinding extensions:ControlExtensions.LabelMargin}"
+                                   IsHitTestVisible="False"
+                                   x:Name="Label" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter TargetName="HintText" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="extensions:ControlExtensions.LabelPosition" Value="Bottom">
+                            <Setter TargetName="r1" Property="Height" Value="*" />
+                            <Setter TargetName="r2" Property="Height" Value="Auto" />
+                            <Setter TargetName="Label" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="ValidationLabel" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="ValidationBorder" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="PART_ContentHost" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="FocusBorder" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="MainBorder" Property="Grid.Row" Value="0" />
+                        </Trigger>
+                        <Trigger Property="extensions:ControlExtensions.LabelText" Value="">
+                            <Setter TargetName="Label" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="True" />
+                                <Condition Property="IsReadOnly" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <!--Binding instead of TemplateBinding (which not supported in a Setter)-->
+                                <Setter TargetName="MainBorder" Property="CornerRadius" Value="{Binding Path=(extensions:TextBoxExtensions.FocusedCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
+                            </MultiTrigger.Setters>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation To="2" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="BorderThickness" />
+                                        <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation To="2" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="BorderThickness" />
+                                        <DoubleAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsReadOnly" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetName="MainBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="0.5" Duration="0:0:0.1" Storyboard.TargetName="MainBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetName="ValidationBorder" Storyboard.TargetProperty="Opacity" />
+                                        <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetName="ValidationLabel" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="ValidationBorder" Storyboard.TargetProperty="Opacity"  />
+                                        <DoubleAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="ValidationLabel" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter Property="Cursor" Value="Arrow" />
+                            <Setter TargetName="MainBorder" Property="Background" Value="{Binding Path=(extensions:TextBoxExtensions.ReadOnlyBackgroundBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{Binding Path=(extensions:TextBoxExtensions.ReadOnlyBorderBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type PasswordBox}" x:Key="NostrumPasswordBoxStyle">
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+        <Setter Property="Padding" Value="14" />
+        <Setter Property="BorderBrush" Value="#2000" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="CaretBrush" Value="Black" />
+        <Setter Property="SelectionBrush" Value="Orange" />
+        <Setter Property="extensions:PasswordBoxExtensions.FocusBorderBrush" Value="Orange" />
+        <Setter Property="extensions:PasswordBoxExtensions.FocusBackgroundBrush" Value="#2000" />
+        <Setter Property="extensions:PasswordBoxExtensions.HintTextBrush" Value="#2000" />
+        <Setter Property="extensions:PasswordBoxExtensions.ErrorBorderBrush" Value="#f55" />
+        <Setter Property="extensions:PasswordBoxExtensions.CornerRadius" Value="5" />
+        <Setter Property="extensions:PasswordBoxExtensions.FocusedCornerRadius" Value="5 5 5 5" />
+        <Setter Property="extensions:PasswordBoxExtensions.PasswordLengthEnabled" Value="True" />
+        <Setter Property="extensions:ControlExtensions.LabelMargin" Value="0 0 0 4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Grid ShowGridLines="False" VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="r1" Height="Auto" />
+                            <RowDefinition x:Name="r2" Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Border Name="MainBorder"
+                                Padding="{TemplateBinding Padding}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="1"
+                                Opacity="0.5"
+                                CornerRadius="{TemplateBinding extensions:PasswordBoxExtensions.CornerRadius}" />
+                        <Border Name="FocusBorder"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="1"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding extensions:PasswordBoxExtensions.FocusBackgroundBrush}"
+                                BorderThickness="2"
+                                BorderBrush="{TemplateBinding extensions:PasswordBoxExtensions.FocusBorderBrush}"
+                                RenderTransformOrigin="0 .5"
+                                Opacity="0"
+                                CornerRadius="{TemplateBinding extensions:PasswordBoxExtensions.FocusedCornerRadius}">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" />
+                            </Border.RenderTransform>
+                        </Border>
+                        <Border Name="ValidationBorder"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Padding="{TemplateBinding Padding}"
+                                BorderThickness="2"
+                                BorderBrush="{TemplateBinding extensions:PasswordBoxExtensions.ErrorBorderBrush}"
+                                Opacity="0">
+                            <Border.Background>
+                                <LinearGradientBrush />
+                            </Border.Background>
+                        </Border>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Grid.Row="1" />
+                        <TextBlock x:Name="HintText"
+                                   Grid.Row="1"
+                                   IsHitTestVisible="False"
+                                   VerticalAlignment="Center"
+                                   Visibility="Collapsed"
+                                   TextWrapping="{TemplateBinding TextBlock.TextWrapping}"
+                                   Padding="{TemplateBinding Padding}"
+                                   Text="{TemplateBinding extensions:PasswordBoxExtensions.HintText}"
+                                   Foreground="{TemplateBinding extensions:PasswordBoxExtensions.HintTextBrush}" />
+                        <TextBlock Foreground="{TemplateBinding extensions:PasswordBoxExtensions.ErrorBorderBrush}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text=" ! "
+                                   x:Name="ValidationLabel">
+                            <TextBlock.LayoutTransform>
+                                <ScaleTransform ScaleX="0" />
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                        <TextBlock Foreground="{TemplateBinding extensions:ControlExtensions.LabelForeground}"
+                                   Text="{TemplateBinding extensions:ControlExtensions.LabelText}"
+                                   FontSize="{TemplateBinding extensions:ControlExtensions.LabelFontSize}"
+                                   FontFamily="{TemplateBinding extensions:ControlExtensions.LabelFontFamily}"
+                                   Margin="{TemplateBinding extensions:ControlExtensions.LabelMargin}"
+                                   IsHitTestVisible="False"
+                                   x:Name="Label" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="extensions:PasswordBoxExtensions.PasswordLength" Value="0">
+                            <Setter TargetName="HintText" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="extensions:ControlExtensions.LabelPosition" Value="Bottom">
+                            <Setter TargetName="r1" Property="Height" Value="*" />
+                            <Setter TargetName="r2" Property="Height" Value="Auto" />
+                            <Setter TargetName="Label" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="ValidationLabel" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="ValidationBorder" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="PART_ContentHost" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="FocusBorder" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="MainBorder" Property="Grid.Row" Value="0" />
+                        </Trigger>
+                        <Trigger Property="extensions:ControlExtensions.LabelText" Value="">
+                            <Setter TargetName="Label" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <!--Binding instead of TemplateBinding (which not supported in a Setter)-->
+                                <Setter TargetName="MainBorder" Property="CornerRadius" Value="{Binding Path=(extensions:PasswordBoxExtensions.FocusedCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
+                            </MultiTrigger.Setters>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation To="2" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="BorderThickness" />
+                                        <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation To="2" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="BorderThickness" />
+                                        <DoubleAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="FocusBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetName="MainBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="0.5" Duration="0:0:0.1" Storyboard.TargetName="MainBorder" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetName="ValidationBorder" Storyboard.TargetProperty="Opacity" />
+                                        <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetName="ValidationLabel" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="ValidationBorder" Storyboard.TargetProperty="Opacity"  />
+                                        <DoubleAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="ValidationLabel" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <!--<Trigger Property="IsReadOnly" Value="True">
+                            <Setter Property="Cursor" Value="Arrow" />
+                            <Setter TargetName="MainBorder" Property="Background" Value="{Binding Path=(extensions:PasswordBoxExtensions.ReadOnlyBackgroundBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{Binding Path=(extensions:PasswordBoxExtensions.ReadOnlyBorderBrush), RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

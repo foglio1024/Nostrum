@@ -23,6 +23,23 @@ namespace Nostrum.WPF.Extensions
             obj.SetValue(FocusBorderBrushProperty, value);
         }
 
+        // FocusBackgroundBrush
+        public static readonly DependencyProperty FocusBackgroundBrushProperty = DependencyProperty.RegisterAttached(
+            "FocusBackgroundBrush",
+            typeof(Brush),
+            typeof(TextBoxExtensions),
+            new PropertyMetadata(Brushes.DodgerBlue));
+
+        public static Brush GetFocusBackgroundBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(FocusBackgroundBrushProperty);
+        }
+
+        public static void SetFocusBackgroundBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(FocusBackgroundBrushProperty, value);
+        }
+
         // AutoScrollEnabled
         public static readonly DependencyProperty AutoScrollEnabledProperty = DependencyProperty.RegisterAttached(
             "AutoScrollEnabled",
@@ -111,5 +128,75 @@ namespace Nostrum.WPF.Extensions
         {
             obj.SetValue(HintTextProperty, value);
         }
+
+        // HintTextBrush
+        public static readonly DependencyProperty HintTextBrushProperty = DependencyProperty.RegisterAttached(
+            "HintTextBrush",
+            typeof(Brush),
+            typeof(TextBoxExtensions),
+            new PropertyMetadata(Brushes.DodgerBlue));
+
+        public static Brush GetHintTextBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(HintTextBrushProperty);
+        }
+
+        public static void SetHintTextBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(HintTextBrushProperty, value);
+        }
+
+
+        // ErrorBorderBrush
+        public static readonly DependencyProperty ErrorBorderBrushProperty = DependencyProperty.RegisterAttached(
+            "ErrorBorderBrush",
+            typeof(Brush),
+            typeof(TextBoxExtensions),
+            new PropertyMetadata(Brushes.DodgerBlue));
+
+        public static Brush GetErrorBorderBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(ErrorBorderBrushProperty);
+        }
+
+        public static void SetErrorBorderBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(ErrorBorderBrushProperty, value);
+        }
+
+        // ReadOnlyBackgroundBrush
+        public static readonly DependencyProperty ReadOnlyBackgroundBrushProperty = DependencyProperty.RegisterAttached(
+            "ReadOnlyBackgroundBrush",
+            typeof(Brush),
+            typeof(TextBoxExtensions),
+            new PropertyMetadata(Brushes.DodgerBlue));
+
+        public static Brush GetReadOnlyBackgroundBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(ReadOnlyBackgroundBrushProperty);
+        }
+
+        public static void SetReadOnlyBackgroundBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(ReadOnlyBackgroundBrushProperty, value);
+        }
+
+        // ReadOnlyBorderBrush
+        public static readonly DependencyProperty ReadOnlyBorderBrushProperty = DependencyProperty.RegisterAttached(
+            "ReadOnlyBorderBrush",
+            typeof(Brush),
+            typeof(TextBoxExtensions),
+            new PropertyMetadata(Brushes.DodgerBlue));
+
+        public static Brush GetReadOnlyBorderBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(ReadOnlyBorderBrushProperty);
+        }
+
+        public static void SetReadOnlyBorderBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(ReadOnlyBorderBrushProperty, value);
+        }
+
     }
 }
