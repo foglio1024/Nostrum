@@ -503,7 +503,7 @@
         <Setter Property="Stretch" Value="Uniform" />
     </Style>
 
-    <Style TargetType="{x:Type CheckBox}" x:Key="{x:Type CheckBox}">
+    <Style TargetType="{x:Type CheckBox}" x:Key="NostrumMainCheckBoxStyle">
         <Setter Property="FocusVisualStyle" Value="{StaticResource EmptyFocusVisual}" />
         <Setter Property="extensions:CheckBoxExtensions.Size" Value="16"/>
         <Setter Property="extensions:CheckBoxExtensions.BaseBrush" Value="SlateGray"/>
