@@ -1,47 +1,66 @@
-﻿using Nostrum.WPF.Extensions;
+﻿using System;
+using Nostrum.WPF.Extensions;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Threading;
 
-namespace Nostrum.WPF.ThreadSafe
+namespace Nostrum.WPF.ThreadSafe;
+
+/// <summary>
+/// An object which keeps a reference to a <see cref="Dispatcher"/> and invokes <see cref="INotifyPropertyChanged.PropertyChanged"/> notifications on the relative thread if needed.
+/// </summary>
+public class ThreadSafeObservableObject : ObservableObject
 {
+    protected Dispatcher _dispatcher;
     /// <summary>
-    /// An object which keeps a reference to a <see cref="Dispatcher"/> and invokes <see cref="INotifyPropertyChanged.PropertyChanged"/> notifications on the relative thread if needed.
+    /// The dispatcher used to invoke the NotifyPropertyChanged event.
     /// </summary>
-    public class ThreadSafeObservableObject : ObservableObject
+    public Dispatcher Dispatcher
     {
-        protected Dispatcher? _dispatcher;
+        get => _dispatcher;
+        set => _dispatcher = value;
+    }
 
-        /// <summary>
-        /// Returns the underlying <see cref="Dispatcher"/>.
-        /// </summary>
-        /// <returns></returns>
-        public Dispatcher? GetDispatcher()
-        {
-            return _dispatcher;
-        }
+    /// <summary>
+    /// Default constructor.
+    /// </summary>
+    /// <param name="dispatcher">the dispatcher. If null, <see cref="Dispatcher.CurrentDispatcher"/> will be used.</param>
+    public ThreadSafeObservableObject(Dispatcher? dispatcher = null)
+    {
+        _dispatcher = dispatcher ?? Dispatcher.CurrentDispatcher;
+    }
 
-        /// <summary>
-        /// Sets a new <see cref="Dispatcher"/>.
-        /// </summary>
-        /// <param name="newDispatcher"></param>
-        public void SetDispatcher(Dispatcher newDispatcher)
-        {
-            _dispatcher = newDispatcher;
-        }
+    /// <summary>
+    /// Returns the underlying <see cref="Dispatcher"/>.
+    /// </summary>
+    /// <returns></returns>
+    [Obsolete("Use the Dispatcher property instead.")]
+    public Dispatcher? GetDispatcher()
+    {
+        return _dispatcher;
+    }
 
-        /// <inheritdoc />
-        protected override sealed void N([CallerMemberName] string? propertyName = null, int delayMs = 0)
-        {
-            if (_dispatcher == null) SetDispatcher(Dispatcher.CurrentDispatcher);
+    /// <summary>
+    /// Sets a new <see cref="Dispatcher"/>.
+    /// </summary>
+    /// <param name="newDispatcher"></param>
+    [Obsolete("Use the Dispatcher property instead.")]
+    public void SetDispatcher(Dispatcher newDispatcher)
+    {
+        _dispatcher = newDispatcher;
+    }
 
-            base.N(propertyName, delayMs);
-        }
+    /// <inheritdoc />
+    protected sealed override void N([CallerMemberName] string? propertyName = null, int delayMs = 0)
+    {
+        Dispatcher = Dispatcher.CurrentDispatcher;
 
-        /// <inheritdoc />
-        protected override sealed void InvokePropertyChanged(string? propertyName)
-        {
-            _dispatcher!.InvokeAsyncIfRequired(() => base.InvokePropertyChanged(propertyName), DispatcherPriority.DataBind);
-        }
+        base.N(propertyName, delayMs);
+    }
+
+    /// <inheritdoc />
+    protected sealed override void InvokePropertyChanged(string? propertyName)
+    {
+        _dispatcher.InvokeAsyncIfRequired(() => base.InvokePropertyChanged(propertyName), DispatcherPriority.DataBind);
     }
 }
