@@ -110,6 +110,11 @@ public class RelayCommand<TParameter> : RelayCommand
 
             try
             {
+                if (o == null)
+                {
+                    execute(default);
+                    return;
+                }
                 var par = (TParameter?)Convert.ChangeType(o, typeof(TParameter), CultureInfo.InvariantCulture);
                 execute(par);
             }
