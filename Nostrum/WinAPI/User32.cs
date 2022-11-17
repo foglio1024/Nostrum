@@ -81,6 +81,9 @@ namespace Nostrum.WinAPI
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
+        [DllImport("user32.dll")]
+        public static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+
         #region Enums
         public enum WindowStyles : uint
         {
@@ -188,6 +191,12 @@ namespace Nostrum.WinAPI
                 this.X = x;
                 this.Y = y;
             }
+        }
+
+        public struct LASTINPUTINFO
+        {
+            public uint cbSize;
+            public uint dwTime;
         }
 
         public delegate bool EnumThreadDelegate(IntPtr hWnd, IntPtr lParam);
