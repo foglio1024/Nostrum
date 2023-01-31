@@ -53,8 +53,6 @@ public class ThreadSafeObservableObject : ObservableObject
     /// <inheritdoc />
     protected sealed override void N([CallerMemberName] string? propertyName = null, int delayMs = 0)
     {
-        Dispatcher = Dispatcher.CurrentDispatcher;
-
         base.N(propertyName, delayMs);
     }
 
