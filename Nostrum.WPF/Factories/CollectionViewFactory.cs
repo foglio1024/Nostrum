@@ -57,7 +57,7 @@ namespace Nostrum.WPF.Factories
             if (predicate == null) cv.Filter = null;
             else cv.Filter = o => predicate.Invoke((T)o);
 
-            if (!(cv is ICollectionViewLiveShaping liveView)) return null;
+            if (cv is not ICollectionViewLiveShaping liveView) return null;
             if (!liveView.CanChangeLiveFiltering) return null;
             if (filters?.Length > 0)
             {
