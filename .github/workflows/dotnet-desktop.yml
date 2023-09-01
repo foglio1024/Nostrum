@@ -32,7 +32,7 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Pack
-      run: dotnet pack -c ${{ matrix.cfg }} -o ./pack
+      run: dotnet pack -c ${{ matrix.configuration }} -o ./pack
         
     - name: Upload artifacts
       if: always()
