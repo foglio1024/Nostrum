@@ -3,6 +3,7 @@ using Nostrum.WPF.Extensions;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Threading;
+using System.Configuration;
 
 namespace Nostrum.WPF.ThreadSafe;
 
@@ -51,9 +52,15 @@ public class ThreadSafeObservableObject : ObservableObject
     }
 
     /// <inheritdoc />
+    [Obsolete($"Use {nameof(RaiseAndSetIfChanged)} instead.")]
     protected sealed override void N([CallerMemberName] string? propertyName = null, int delayMs = 0)
     {
         base.N(propertyName, delayMs);
+    }
+
+    protected sealed override bool RaiseAndSetIfChanged<T>(T value, ref T backingField, [CallerMemberName] string? propertyName = null, int delayMs = 0)
+    {
+        return base.RaiseAndSetIfChanged(value, ref backingField, propertyName, delayMs);
     }
 
     /// <inheritdoc />
