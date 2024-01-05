@@ -73,7 +73,7 @@ namespace Nostrum.WPF
             return true;
         }
 
-        void InvokePropertyChanged(string? propertyName, int delayMs)
+        protected virtual void InvokePropertyChanged(string? propertyName, int delayMs)
         {
             if (delayMs > 0)
             {
