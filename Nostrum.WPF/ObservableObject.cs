@@ -26,17 +26,17 @@ namespace Nostrum.WPF
                 Task.Factory.StartNew(async () =>
                 {
                     await Task.Delay(delayMs);
-                    InvokePropertyChanged(propertyName);
+                    InvokePropertyChangedImpl(propertyName);
                 });
             }
             else
             {
-                InvokePropertyChanged(propertyName);
+                InvokePropertyChangedImpl(propertyName);
             }
         }
 
         /// <summary>
-        /// Calls the <see cref="N"/> method externally.
+        /// Calls the <see cref="InvokePropertyChanged"/> method externally.
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="delayMs"></param>
@@ -45,7 +45,7 @@ namespace Nostrum.WPF
             InvokePropertyChanged(propertyName, delayMs);
         }
 
-        protected virtual void InvokePropertyChanged(string? propertyName)
+        protected virtual void InvokePropertyChangedImpl(string? propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -73,19 +73,19 @@ namespace Nostrum.WPF
             return true;
         }
 
-        protected virtual void InvokePropertyChanged(string? propertyName, int delayMs)
+        protected virtual void InvokePropertyChanged([CallerMemberName] string? propertyName = null, int delayMs = 0)
         {
             if (delayMs > 0)
             {
                 Task.Factory.StartNew(async () =>
                 {
                     await Task.Delay(delayMs);
-                    InvokePropertyChanged(propertyName);
+                    InvokePropertyChangedImpl(propertyName);
                 });
             }
             else
             {
-                InvokePropertyChanged(propertyName);
+                InvokePropertyChangedImpl(propertyName);
             }
         }
     }
