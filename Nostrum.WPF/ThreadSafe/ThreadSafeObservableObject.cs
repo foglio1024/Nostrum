@@ -64,8 +64,8 @@ public class ThreadSafeObservableObject : ObservableObject
     }
 
     /// <inheritdoc />
-    protected sealed override void InvokePropertyChanged([CallerMemberName] string? propertyName = null, int delayMs = 0)
+    protected sealed override void InvokePropertyChanged(string? propertyName)
     {
-        _dispatcher.InvokeAsyncIfRequired(() => base.InvokePropertyChanged(propertyName, delayMs), DispatcherPriority.DataBind);
+        _dispatcher.InvokeAsyncIfRequired(() => base.InvokePropertyChanged(propertyName), DispatcherPriority.DataBind);
     }
 }
